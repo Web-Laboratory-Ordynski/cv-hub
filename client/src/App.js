@@ -1,25 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
+import { 
+  BrowserRouter as Router, 
+  Route 
+} from 'react-router-dom'
+import { About } from './components/About/About'
+import { Home } from './components/Home/Home'
+import { Login } from './components/Auth/Login/Login'
+import { SignUp } from './components/Auth/SignUp/SignUp'
+import { Header } from './components/layout/Header/Header'
+import { Footer } from './components/layout/Footer/Footer'
+import { Profile } from './components/User/Profile/Profile'
+import { EditProfile } from './components/User/EditProfile/EditProfile'
+import { CreateResume } from './components/Resume/CreateResume/CreateResume'
+import { AllResumes } from './components/Resume/Resumes/AllResumes'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Header />
+        <Route path='/about' component={About} exact />
+        <Route path='/home' component={Home} exact />
+        <Route path='/login' component={Login} exact />
+        <Route path='/signup' component={SignUp} exact />
+        <Route path='/user/profile' component={Profile} exact />
+        <Route path='/user/profile/edit' component={EditProfile} exact />
+        <Route path='/resume/create' component={CreateResume} exact />
+        <Route path='/resume/resumes' component={AllResumes} exact />
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
-export default App;
+export default (App);
