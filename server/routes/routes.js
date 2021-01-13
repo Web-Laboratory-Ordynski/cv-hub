@@ -6,6 +6,8 @@ router.post('/login', userContoller.login)
 
 router.post('/register', userContoller.register)
 
+router.post('/get-new-token', userContoller.getNewTokenByRefreshToken)
+
 router.get('/secured-data', userContoller.authenticateToken, (req, res) => res.send('Secured data'))
 
 module.exports = router
