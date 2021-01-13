@@ -13,6 +13,7 @@ import { Profile } from './components/User/Profile/Profile'
 import { EditProfile } from './components/User/EditProfile/EditProfile'
 import { CreateResume } from './components/Resume/CreateResume/CreateResume'
 import { AllResumes } from './components/Resume/Resumes/AllResumes'
+import { UserResume } from './components/Resume/UserResume/UserResume'
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path='/user/profile/edit' component={EditProfile} exact />
         <Route path='/resume/create' component={CreateResume} exact />
         <Route path='/resume/resumes' component={AllResumes} exact />
+        <Route path='/resume/userResume' component={UserResume} exact />
         <Footer />
       </div>
     </Router>

@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const AllResumes = () => {
+export const UserResume = () => {
     return (
         <div>
-            All Resume
+            User Resume
         </div>
     )
 }
