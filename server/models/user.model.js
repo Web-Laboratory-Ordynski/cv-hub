@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
+const cvModel = require('./cv.model')
 
-const userSchema = mongoose.Schema({
+const userSchema = new mongoose.Schema({
   username: {
     required: true,
     unique: true,
@@ -11,14 +12,14 @@ const userSchema = mongoose.Schema({
     type: String
   },
   email: {
-    unique: true,
-    type: String,
-    default: ''
+    type: String
   },
   userImg: {
     type: String,
     default: ''
-  }
+  },
+  cv: cvModel.schema
 }, { timestamps: true, collection: 'users' })
+
 
 module.exports = mongoose.model('User', userSchema)

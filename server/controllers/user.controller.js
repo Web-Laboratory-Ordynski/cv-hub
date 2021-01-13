@@ -54,8 +54,8 @@ exports.login = async (req, res) => {
   const date = new Date()
 
   if (isPasswordRight) {
-    const accessToken = generateAccessToken(user._doc, date)
-    const refreshToken = await generateRefreshToken(user._doc, date)
+    const accessToken = generateAccessToken({...user._doc, cv: null}, date)
+    const refreshToken = await generateRefreshToken({...user._doc, cv: null}, date)
     
     return res.json({success: true, accessToken, refreshToken, user: {...user._doc, password: null}})
   } else {
@@ -81,6 +81,21 @@ exports.logout = async (req, res) => {
   await refreshTokenModel.deleteOne({refreshToken: req.body.refreshToken})
 
   res.sendStatus(204)
+}
+
+exports.editCV = async (req, res) => {
+  const user = await userModel.findOne({_id: req.user._id})
+
+  if (user) {
+    user.cv = req.body.cv
+    try {
+      await user.save()
+      res.json({success: true, user: await await userModel.findOne({_id: req.user._id})})
+    } catch (err) {
+      console.log(err)
+      res.json({success: false})
+    }
+  }
 }
 
 exports.authenticateToken = (req, res, next) => {
