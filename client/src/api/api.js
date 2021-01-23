@@ -4,22 +4,20 @@ const baseUrl = 'http://localhost:5000/api'
 
 const API = {
   	register: async user => {
-    	try {
-			const res = await axios.post(baseUrl + '/register', user)
-			return res
-        } catch(err) {
-			console.log(err)
-			return err
-        }
+		return axios.post(baseUrl + '/register', user)
+			.then(res => {
+				return res.data
+			}).catch(err => {
+				return err.response.data.msg
+			})
 	},
-	login: async user => {
-		try {
-			const res = await axios.post(baseUrl + '/login', user)
-			return res
-        } catch(err) {
-			console.log(err)
-			return err
-        }
+	login: user => {
+		return axios.post(baseUrl + '/login', user)
+			.then(res => {
+				return res.data
+			}).catch(err => {
+				return err.response.data
+			})
 	},
 	editCv: async (cv) => {
 		try {

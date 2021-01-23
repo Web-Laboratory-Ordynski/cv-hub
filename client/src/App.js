@@ -31,10 +31,11 @@ function App() {
 
     const res = await API.register(user)
     console.log(res)
-    if (res.data.success === false) {
-      setError(res.data.msg)
-    } else {
+    if (res.success) {
+      addToLocalStorage('response', res)
       setError('')
+    } else {
+      setError(res.msg)
     }
 
     setPassword('')
@@ -49,12 +50,11 @@ function App() {
 
     const res = await API.login(user)
     console.log(res)
-    if (res.data.success) {
-      addToLocalStorage('response', res.data)
+    if (res.success) {
+      addToLocalStorage('response', res)
       setError('')
     } else {
-      setError(res.data.msg)
-
+      setError(res.msg)
     }
     
     setPassword('')
