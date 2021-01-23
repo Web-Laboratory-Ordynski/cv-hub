@@ -8,16 +8,16 @@ exports.register = async (req, res) => {
   const password = req.body.password
 
   if (!username || username.length < 4) {
-    return res.json({success: false, msg: 'Username length must be at least 4'})
+    return res.status(401).json({success: false, msg: 'Username length must be at least 4'})
   }
 
   if (!password || password.length < 8) {
-    return res.json({success: false, msg: 'Password length must be at least 8'})
+    return res.status(401).json({success: false, msg: 'Password length must be at least 8'})
   }
 
   const isUsernameExist = await userModel.findOne({username})
 
-  if (isUsernameExist) return res.json({success: false, msg: 'User with this username already exists'})
+  if (isUsernameExist) return res.status(403).json({success: false, msg: 'User with this username already exists'})
 
   try {
     const hashedPass = await bcrypt.hash(req.body.password, 10)
@@ -28,8 +28,9 @@ exports.register = async (req, res) => {
     })
 
     const createdUser = await user.save()
-  
-    res.json({success: true, user: createdUser})
+    const userToSend = { ...createdUser._doc }
+    delete userToSend.password
+    res.json({success: true, user: { ...userToSend }})
   } catch(err) {
     throw err
     res.json({success: false, msg: err})
@@ -40,13 +41,13 @@ exports.login = async (req, res) => {
   const password = req.body.password
 
   if (!password || password.length < 8) {
-    return res.json({success: false, msg: 'Password length must be at least 8'})
+    return res.status(403).json({success: false, msg: 'Password length must be at least 8'})
   }
 
   const user = await userModel.findOne({username: req.body.username})
 
   if (!user) {
-    return res.send({success: false, msg: 'User with this username not found'})
+    return res.status(403).send({success: false, msg: 'User with this username not found'})
   }
 
   const isPasswordRight = await bcrypt.compare(password, user.password)
@@ -57,9 +58,12 @@ exports.login = async (req, res) => {
     const accessToken = generateAccessToken({...user._doc, cv: null}, date)
     const refreshToken = await generateRefreshToken({...user._doc, cv: null}, date)
     
-    return res.json({success: true, accessToken, refreshToken, user: {...user._doc, password: null}})
+    const userToSend = { ...user._doc }
+    delete userToSend.password
+
+    return res.status(200).json({success: true, accessToken, refreshToken, user: { ...userToSend }})
   } else {
-    return res.status(200).send({success: false, msg: 'Password is not valid'})
+    return res.status(403).send({success: false, msg: 'Password is not valid'})
   }
 }
 

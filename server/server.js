@@ -1,18 +1,17 @@
 require('dotenv').config()
 const PORT = 5000
 const express = require('express')
-const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
-
+const cors = require('cors')
 const routes = require('./routes/routes')
 
 const app = express()
 
 app.use(morgan('common'))
 
-app.use(bodyParser.json())
-
+app.use(express.json())
+app.use(cors())
 app.use('/api', routes)
 
 mongoose.connect(
@@ -26,7 +25,8 @@ mongoose.connect(
       throw new err
     }
     console.log('db connected')
-    app.listen(PORT, () => console.log('Server started'))
   }
 )
+
+app.listen(PORT, () => console.log('Server started'))
 
