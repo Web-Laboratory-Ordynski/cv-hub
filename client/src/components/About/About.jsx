@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import '../../App.css';
 
-class App extends Component {
+class About extends Component {
   render() {
     return (
       <div className="App">
         <header className="App-header-about">
-          <img src={logo} className="App-logo" alt="logo" />
+          {/* <img src={logo} className="App-logo" alt="logo" /> */}
+          <h5>React people</h5>
           
           <h1 className="App-title">About us</h1>
-          <h5 className="App-title-2">Just information about creaters of this site. Small, but very smart Team</h5>
+          <h5 className="App-title-about2">Just information about creaters of this site. Small, but very smart Team</h5>
         </header>
         <p className="App-intro">
           Our  greate team isn't so big, course it is so small
@@ -24,4 +25,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default About;

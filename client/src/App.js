@@ -5,7 +5,7 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom'
-import { About } from './components/About/About'
+import About from './components/About/About'
 import { Home } from './components/Home/Home'
 import { Login } from './components/Auth/Login/Login'
 import { SignUp } from './components/Auth/SignUp/SignUp'
