@@ -1,0 +1,184 @@
+.wrapper {
+    background-color: #e5e5e5;
+  }
+  .AppCreateCV {
+    background-color: white;
+    margin-left: 400px;
+    margin-right: 400px;
+  }
+  input {
+    width: 450px;
+    font-size: 25px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid black;
+    overflow-y: auto;
+    /* float: left; */
+  }
+  .photoHolder {
+    width: 450px;
+    margin-left: 150px;
+  }
+  .inputPhotoHolder {
+    position: absolute;
+    z-index: -1;
+  }
+  label {
+    display: inline-block;
+    cursor: pointer;
+    background-color: #a0a9fa;
+    padding: 15px 30px;
+    transition: all 0.3s;
+  }
+  label:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  .divForImg {
+    margin-left: 917px;
+    position: absolute;
+  }
+  .imgDiv {
+    width: 120px;
+    height: 160px;
+  }
+  .name {
+    width: 450px;
+    margin-top: 50px;
+    margin-left: 150px;
+  }
+  .surname {
+    width: 450px;
+    margin-top: 50px;
+    margin-left: 150px;
+  }
+  .skills {
+    width: 450px;
+    margin-top: 50px;
+    margin-left: 150px;
+  }
+  .profile {
+    width: 450px;
+    margin-top: 50px;
+    margin-left: 150px;
+  }
+  .experience {
+    width: 450px;
+    margin-top: 50px;
+    margin-left: 150px;
+  }
+  .eduction {
+    width: 450px;
+    margin-top: 50px;
+    margin-left: 150px;
+  }
+  .projects {
+    width: 450px;
+    margin-top: 50px;
+    margin-left: 150px;
+  }
+  .nameInput {
+    width: 450px;
+    height: 50px;
+    overflow-y: auto;
+  }
+  .surnameInput {
+    width: 450px;
+    height: 50px;
+  }
+  .skillsInput {
+    /* width: 450px;
+    font-size: 35px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid black;
+    float: left; */
+  }
+  .userSkills {
+    margin-left: 150px;
+    text-align: left;
+  }
+  .form {
+    margin-left: 300px;
+  }
+  .select {
+    height: 44px;
+    transform: translateY(-7px);
+    outline: none;
+    border-radius: 5px;
+    border: 2px solid #a0a9fa;
+  }
+  .select:hover {
+    background-color: #a0a9fa;
+  }
+  .skillsButton {
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+    outline: none;
+    font-size: 35px;
+    color: #bbb;
+    border: 2px solid #a0a9fa;
+    background-color: white;
+  }
+  .skillsButton:hover {
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+    outline: none;
+    border: none;
+    font-size: 35px;
+    background-color: #a0a9fa;
+  }
+  .textOfInput {
+    font-size: 25px;
+    text-align: left;
+  }
+  .skillsWarningText {
+    float: left;
+    margin: 0;
+  }
+  .skillsWarningMesssage {
+    color: red;
+    margin: 0;
+  }
+  .profileInput {
+    width: 650px;
+    height: auto;
+    border: none;
+    outline: none;
+    font-size: 25px;
+    border-bottom: 2px solid black;
+  }
+  .experienceInput {
+    width: 450px;
+    height: 50px;
+  }
+  .educationInput {
+    width: 450px;
+    height: 50px;
+  }
+  .projectsInput {
+    width: 650px;
+    height: auto;
+    border: none;
+    outline: none;
+    font-size: 25px;
+    border-bottom: 2px solid black;
+  }
+  .submitAll {
+    width: 100px;
+    margin-right: 50px;
+    margin-left: auto;
+  }
+  .buttonSubmitAll {
+    width: 130px;
+    height: 50px;
+    border-radius: 7px;
+    outline: none;
+    border: 2px solid #a0a9fa;
+    background-color: white;
+  }
+  .buttonSubmitAll:hover {
+    background-color: #a0a9fa;
+  }
+  
