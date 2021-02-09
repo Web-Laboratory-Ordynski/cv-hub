@@ -1,9 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export const EditProfile = () => {
-    return (
-        <div>
-            Edit Profile
-        </div>
-    )
-}
+  return <div>Edit Profile</div>;
+};
