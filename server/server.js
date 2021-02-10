@@ -27,7 +27,7 @@ mongoose.connect(
   },
   (err) => {
     if (err) {
-      throw new err
+      throw new Error(err)
     }
     console.log('db connected')
   }
