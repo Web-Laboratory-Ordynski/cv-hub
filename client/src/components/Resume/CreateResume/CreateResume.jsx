@@ -24,17 +24,23 @@ export const CreateResume = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const skillRateHandler = (value) => {
-    if (value == 1 || value == 2 || value == 3 || value == 4 || value == 5) {
+    if (
+      value === "1" ||
+      value === "2" ||
+      value === "3" ||
+      value === "4" ||
+      value === "5"
+    ) {
       setSkillsRate(value);
     }
   };
 
   const deleteSomeSkill = (id) => {
     console.log(id);
-    setSkillsFromInput(skillsFromInput.filter((el) => el.id != id));
+    setSkillsFromInput(skillsFromInput.filter((el) => el.id !== id));
   };
   const addNewSkill = () => {
-    if (skillsRate != "") {
+    if (skillsRate !== "") {
       setSkillsFromInput([
         ...skillsFromInput,
         {
@@ -50,34 +56,20 @@ export const CreateResume = () => {
       ]);
       setSkillsRate("");
     } else {
-      setSkillsFromInput([
-        ...skillsFromInput,
-        {
-          id: skillsFromInput.length,
-          skillsText: <p className="skillsWarningText">{skills}</p>,
-          rate: (
-            <>
-              <p className="skillsWarningText">&nbsp;</p>
-              <p className="skillsWarningMesssage">
-                You need to rate your skill
-              </p>
-            </>
-          ),
-        },
-      ]);
+      return alert("You need to rate your skill");
     }
   };
   useEffect(() => {
     console.log(photoHolder);
-    if (photoHolder == undefined) {
-      var photoSrc = photoHolder;
-    } else if (photoHolder != undefined && photoHolder.length != 0) {
+    if (photoHolder === undefined) {
+      let photoSrc = photoHolder;
+    } else if (photoHolder !== undefined && photoHolder.length !== 0) {
       if (
-        photoHolder["0"].type == fileType[0] ||
-        photoHolder["0"].type == fileType[1] ||
-        photoHolder["0"].type == fileType[2]
+        photoHolder["0"].type === fileType[0] ||
+        photoHolder["0"].type === fileType[1] ||
+        photoHolder["0"].type === fileType[2]
       ) {
-        var photoSrc = photoHolder["0"];
+        let photoSrc = photoHolder["0"];
         setSrcPhoto(window.URL.createObjectURL(photoSrc));
         setImgDiv("imgDiv");
         setTextOfUncorrectFileType("");
@@ -93,15 +85,19 @@ export const CreateResume = () => {
     } else {
       console.log("gotit");
     }
-  }, [photoHolder]);
+  }, [photoHolder, fileType]);
 
-  var mappingSkillsFromInput = skillsFromInput.map((el) => (
-    <div className="textOfInput">
-      {el.skillsText}
-      {el.rate}
-      <button onClick={() => deleteSomeSkill(el.id)}>Delete</button>
-    </div>
-  ));
+  let mappingSkillsFromInput = skillsFromInput.map((el) => {
+    if (el.skillsText !== "") {
+      return (
+        <div className="textOfInput">
+          {el.skillsText}
+          {el.rate}
+          <button onClick={() => deleteSomeSkill(el.id)}>Delete</button>
+        </div>
+      );
+    }
+  });
   const edit_cv = () => {
     setIsLoading(true);
     axios.put(
@@ -134,7 +130,7 @@ export const CreateResume = () => {
           {textOfUncorrectFileType}
         </div>
         <div className="divForImg">
-          <img className={imgDiv} src={srcPhoto}></img>
+          <img className={imgDiv} src={srcPhoto} alt=""></img>
         </div>
         <div className="name">
           <input
@@ -209,7 +205,9 @@ export const CreateResume = () => {
           />
         </div>
         <div className="submitAll">
-          <button className="buttonSubmitAll" onClick={edit_cv}>Create CV</button>
+          <button className="buttonSubmitAll" onClick={edit_cv}>
+            Create CV
+          </button>
           {isLoading ? <h1>Loading</h1> : ""}
         </div>
       </div>
