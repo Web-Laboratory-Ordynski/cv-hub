@@ -74,10 +74,11 @@ exports.getNewTokenByRefreshToken = async (req, res) => {
   const isTokenExists = await refreshTokenModel.findOne({refreshToken})
   if (!isTokenExists) return res.sendStatus(403)
 
-  jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, data) => {
+  jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, async (err, data) => {
     if (err) return res.sendStatus(403)
-    const accessToken = generateAccessToken(data.user, new Date())
-    res.status(200).json({accessToken, user: data.user})
+    const user = await userModel.findOne({_id: data.user._id})
+    const accessToken = generateAccessToken(user, new Date())
+    res.status(200).json({accessToken, user})
   })
 }
 
@@ -94,7 +95,7 @@ exports.editCV = async (req, res) => {
     user.cv = req.body.cv
     try {
       await user.save()
-      res.status(200).json({success: true, user: await await userModel.findOne({_id: req.user._id})})
+      res.status(200).json({success: true, user: await userModel.findOne({_id: req.user._id})})
     } catch (err) {
       console.log(err)
       res.status(400).json({success: false})
@@ -103,7 +104,7 @@ exports.editCV = async (req, res) => {
 }
 
 exports.authenticateToken = (req, res, next) => {
-  const authHeader = req.headers['Authorization']
+  const authHeader = req.headers['authorization']
   const token = authHeader && authHeader.split(' ')[1]
 
   if (!token) return res.sendStatus(401)
