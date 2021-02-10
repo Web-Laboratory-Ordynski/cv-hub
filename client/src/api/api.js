@@ -19,14 +19,15 @@ const API = {
 				return err.response.data
 			})
 	},
-	editCv: async (cv) => {
-		try {
-			const res = await axios.put(baseUrl + '/edit-cv', cv)
-		} catch (err) {
-			console.log(err)
-			return err
-		}
-	}
+	editCv: (cv, token) => {
+		return axios.put(baseUrl + '/edit-cv', cv, { headers: {  'Authorization': 'Bearer ' + token } })
+			.then(res => {
+				return res.data
+			}).catch(err => {
+				return err.response.data
+			})
+	},
+	
 }
 
 export default API
