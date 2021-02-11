@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../../App.css';
+import './index.scss'
 import GR1 from './Images/GR-1.jpg';
 import GR2 from './Images/GR-2.jpg';
 import GR3 from './Images/GR-3.jpg';
@@ -19,24 +19,24 @@ class About extends Component {
 
         <p>Our  greate team isn't so big, course it is so small</p>
         <p>Not all, but a most of our members you can see on the next image:</p>
-        <img src={window.location.origin + '/BRA_Team_2021.jpg'} width="850" height="500" alt="BRA_Team_2021"/>
+        <img src={window.location.origin + '/BRA_Team_2021.jpg'} className='image' alt="BRA_Team_2021"/>
         <p>We started in 2020 year and finished in 2021. As a result you can see this butiful and wanderful site. 
           It is so perfect as a sunrise </p>
 
         <div className="Images-Wrapper">
         <h4>Other photos of our perfect team:</h4>
-        <img src={GR1} width="700" height="500" alt="GR1 image"/>
+        <img src={GR1} className='image' alt="GR1 image"/>
         <p></p>
-        <img src={GR2} width="700" height="500" alt="GR2 image"/>
+        <img src={GR2} className='image' alt="GR2 image"/>
         <p></p>
-        <img src={GR3} width="700" height="500" alt="GR3 image"/>
+        <img src={GR3} className='image' alt="GR3 image"/>
         <p></p>
-        <img src={GR4} width="700" height="500" alt="GR4 image"/>
+        <img src={GR4} className='image' alt="GR4 image"/>
         <p></p>
-        <img src={GR5} width="700" height="500" alt="GR5 image"/>
+        <img src={GR5} className='image' alt="GR5 image"/>
         <p></p>
         <h4>Our teacher:</h4>
-        <img src={GR6} width="400" height="500" alt="GR6 image"/>
+        <img src={GR6} className='image' alt="GR6 image"/>
         </div>
        
         
