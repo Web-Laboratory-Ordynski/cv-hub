@@ -1,3 +1,6 @@
+/* body {
+    background-color: #010002;
+} */
 .header__conteiner {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -9,6 +12,136 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 200px 0px 0px 0px;
+  padding: 50px 0px 0px 0px;
+  margin: 100px auto 100px auto;
+  width: 90%;
+  /* margin: 0 auto; */
+  background-color: rgba(0, 0, 0, 0.575);
+}
+
+.header__button {
+  /* padding: 0px 100px 0px 0px; */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0 auto;
+}
+
+.header__button h1 {
+  color: #ee5c55;
+  font-size: 40pt;
+}
+
+.header__button p {
+  font-size: 12pt;
+}
+
+button {
+  margin: 100px 0px 0px 0px;
+  padding: 20px 50px;
+  border-radius: 7px;
+  color: #fff;
+  border: 5px solid #4051b5;
+  background-color: transparent;
+  font-weight: 900;
+  cursor: pointer;
+  font-size: 15pt;
+  outline: none;
+}
+
+button:hover {
+  color: #ffffff;
+  border: 5px solid #4051b5;
+  background-color: #4051b5;
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+}
+
+.advice__blocks {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  padding: 100px 0px 100px 0px;
+}
+
+.advice__blocks div {
+  background-color: #4051b5;
+  border-radius: 6px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  width: 60%;
+  margin: 30px auto 30px auto;
+}
+
+.advice__blocks div:hover {
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  background-color: #5c6abb;
+}
+
+.advice__blocks div:hover .hdr__descrpt {
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  background-color: #5c6abb;
+}
+
+.advice__blocks div .galochka {
+  padding-left: 50px;
+}
+
+.advice__blocks div .hdr__descrpt {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  text-align: start;
+  color: #fff;
+}
+
+.advice__blocks div .hdr__descrpt h2 {
+  font-size: 20pt;
+  color: #ffd2d0;
+}
+
+.advice__blocks div .hdr__descrpt p {
+  font-size: 13pt;
+}
+
+.last__block {
+  height: 500px;
+  width: 100%;
+}
+
+.last__block button {
+  color: #000;
+  margin-top: 13%;
+}
+
+.last__block button:hover {
+  color: #fff;
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
 }
 /*# sourceMappingURL=home.module.css.map */
