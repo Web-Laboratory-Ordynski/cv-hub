@@ -2,6 +2,11 @@ import axios from 'axios'
 
 const baseUrl = 'http://localhost:5000/api'
 
+import axios from 'axios'
+
+const baseUrl = 'http://localhost:5000/api'
+
+const getFromLs = (value) => localStorage.getItem(value)
 const getFromLs = (value) => JSON.parse(localStorage.getItem(value))
 const setRefreshTokenToLs = value => localStorage.setItem('refreshToken', value)
 

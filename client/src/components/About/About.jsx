@@ -1,3 +1,13 @@
+import React from 'react'
+
+export const About = () => {
+    return (
+        <div>
+            About
+        </div>
+    )
+}
+=======
 import React, { Component } from 'react';
 import './index.scss'
 import GR1 from './Images/GR-1.jpg';
