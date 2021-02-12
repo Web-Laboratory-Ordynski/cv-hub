@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 * {
   padding: 0;
   margin: 0;
@@ -52,63 +51,6 @@ body {
   font-weight: 400;
   line-height: 24px;
   color: #5a626e;
-=======
-/* *{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-
-body{
-    background-color: #f5f7fa;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 40px;
-    padding-bottom: 40px;
-    font-family: Montserrat;
-} */
-.wrapper{
-    background: #ffffff;
-    display: flex;
-    width: 700px;
-    /* max-width: 45vw; */
-    margin: 0 auto;
-    box-shadow: 5px 9px 20px rgba(0, 0, 0, 0.15);
-}
-.sidebar{
-    background: #1e2939;
-    width: 370px;
-    padding-top: 40px;
-    padding-bottom: 40px;
-}
-.my-foto{
-    width: 370px;
-}
-.about-me-container{
-    background-color: white;
-    padding-left: 90px;
-    padding-right: 90px;
-    padding-top: 110px;
-    padding-bottom: 110px;
-}
-.contacts-container{
-    margin-top: 60px;
-    margin-left: 40px;
-    margin-right: 40px;
-}
-.contacts-title{
-    font-size: 22px;
-    font-weight: 700;
-    line-height: 24px;
-    color: #ffffff;
-    margin-bottom: 20px;
-}
-.contacts-link{
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 24px;
-    color: #5a626e;
->>>>>>> 957ecdc501fcc2d09775959dcc5dc31230f3fa96
 }
 
 .contacts-link-type {

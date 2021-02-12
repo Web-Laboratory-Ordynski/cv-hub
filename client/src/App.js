@@ -11,7 +11,7 @@ import { Login } from './components/Auth/Login/Login'
 import { SignUp } from './components/Auth/SignUp/SignUp'
 import { Header } from './components/layout/Header/Header'
 import { Footer } from './components/layout/Footer/Footer'
-import { Profile } from './components/User/Profile/Profile'
+import Profile from './components/User/Profile/Profile'
 import { EditProfile } from './components/User/EditProfile/EditProfile'
 import { CreateResume } from './components/Resume/CreateResume/CreateResume'
 import { AllResumes } from './components/Resume/Resumes/AllResumes'
@@ -24,12 +24,18 @@ function App() {
   const [error, setError] = useState('')
   const [userCv, setUserCv] = useState({})
 
-  useEffect(async () => {
-    const res = await API.getNewToken()
-    console.log(res)
-    if(res.success) {
-      setUserCv(res.user)
+  const getNewToken = async () => {
+    if (getFromLS('response')) {
+      const res = await API.getNewToken()
+      if (res.success) {
+        setUserCv(res.user)
+      }
     }
+  }
+
+
+  useEffect(() => {
+    getNewToken()
   }, [])
 
   const register = async () => {
@@ -57,6 +63,7 @@ function App() {
       password
     }
 
+    console.log(user)
     const res = await API.login(user)
     console.log(res)
     if (res.success) {
@@ -65,16 +72,16 @@ function App() {
     } else {
       setError(res.msg)
     }
-    
+
     setPassword('')
     setUsername('')
   }
 
   const addToLocalStorage = (name, value) => localStorage.setItem(name, JSON.stringify(value))
 
-  const getFormLocalStorage = name => JSON.parse(localStorage.getItem(name))
+  const getFromLS = value => JSON.parse(localStorage.getItem(value))
 
-  console.log(userCv)
+  // console.log(userCv)
 
   return (
     <Router>
@@ -105,9 +112,14 @@ function App() {
           />
         </Route>
         <Route path='/user/profile' exact>
-          <Profile 
-            userCv={userCv}
-          />
+          {
+            userCv.cv && (
+              <Profile
+                cv={userCv.cv}
+              />
+            )
+          }
+
         </Route>
         <Route path='/user/profile/edit' component={EditProfile} exact />
         <Route path='/resume/create' component={CreateResume} exact />

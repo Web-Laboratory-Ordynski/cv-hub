@@ -2,17 +2,13 @@ import axios from 'axios'
 
 const baseUrl = 'http://localhost:5000/api'
 
-import axios from 'axios'
-
-const baseUrl = 'http://localhost:5000/api'
-
-const getFromLs = (value) => localStorage.getItem(value)
 const getFromLs = (value) => JSON.parse(localStorage.getItem(value))
 const setRefreshTokenToLs = value => localStorage.setItem('refreshToken', value)
 
 axios.interceptors.request.use(
 	config => {
-		const token = getFromLs('token').token
+		const token = getFromLs('response').token
+		console.log(token)
 		if (token) {
 			config.headers['Authorization'] = 'Bearer ' + token;
 		}

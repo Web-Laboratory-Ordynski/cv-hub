@@ -9,80 +9,8 @@ import ProfileExpreriences from "./profile-exprerience";
 import ProfileEducation from "./profile-education";
 import ProfileUserInfoCard from "./profile-userinfo";
 
-const Profile = () => {
-  const initialCV = {
-    position: "web dev",
-    jobDesc: "full-time office",
-    projects: [
-      {
-        name: "1",
-        desc: "1",
-        position: "1",
-        url: "",
-        technologies: [
-          {
-            _id: "1",
-            groupName: "client",
-            technologies: ["React", "Redux"],
-          },
-        ],
-      },
-    ],
+const Profile = ({cv}) => {
 
-    userInfo: {
-      firstName: "",
-      lastName: "",
-      adress: "1",
-      email: "1",
-      phone: "1",
-      social: [
-        {
-          _id: "1",
-          name: "git hub",
-          url: "https://github.com",
-          desc: "1",
-        },
-      ],
-    },
-
-    technologies: [
-      {
-        _id: "1",
-        groupName: "1",
-        technologies: [
-          {
-            _id: "1",
-            name: "React",
-            level: 5,
-          },
-        ],
-      },
-    ],
-
-    exprerience: [
-      {
-        _id: "1",
-        name: "1",
-        position: "1",
-        startedWork: "1",
-        areYouCurentlyWorking: true,
-        endWork: "1",
-      },
-    ],
-
-    education: [
-      {
-        _id: "1",
-        name: "Beetroot",
-        position: "1",
-        startedStudy: "28.10.2020",
-        areYouCurentlyStuding: true,
-        endStudy: "1",
-      },
-    ],
-  };
-
-  const [cv, setCV] = useState(initialCV);
 
   return (
     <div className="wrapper">
@@ -115,32 +43,12 @@ const Profile = () => {
               </div>
             </div>
             
-          {/* {cv.technologies && <ProfileUserInfoCard userinfo={cv.userinfo} />} */}
+          {cv.technologies && <ProfileUserInfoCard userinfo={cv.userinfo} />}
         </div>
         {/* --- Tech Skills container --- */}
         {cv.technologies && (
           <ProfileTechnologies technologies={cv.technologies} />
         )}
-
-        {/* --- Soft Skills container--- */}
-        {/* {/* <div className="soft-skills-container"> */}
-          {/* <h3 className="soft-skills-title">Soft Skills</h3>
-          <ul>
-            <li className="soft-skills-item">
-              <span className="soft-skills-text">Scrum</span>
-            </li>
-            <li className="soft-skills-item">
-              <span className="soft-skills-text">Agile</span>
-            </li>
-            <li className="soft-skills-item">
-              <span className="soft-skills-text">GTD</span>
-            </li>
-            <li className="soft-skills-item">
-              <span className="soft-skills-text">Teamwork</span>
-            </li>
-          </ul>
-        </div> */}
-      {/* </div> */} */
 
       {/* -- about me container-- */}
       <div className="about-me-container">
