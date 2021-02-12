@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const baseUrl = 'http://localhost:5000/api'
 
-const getFromLs = (value) => localStorage.getItem(value)
+const getFromLs = (value) => JSON.parse(localStorage.getItem(value))
 const setRefreshTokenToLs = value => localStorage.setItem('refreshToken', value)
 
 axios.interceptors.request.use(
@@ -44,7 +44,7 @@ const API = {
 	},
 	getNewToken: async () => {
 		const refreshToken = getFromLs('response').refreshToken
-
+		console.log(refreshToken)
 		if(refreshToken) {
 			const res = await axios.post(baseUrl + '/get-new-token', { refreshToken })
 			if(res.status === 200) {
@@ -52,7 +52,8 @@ const API = {
 
 				return {
 					accessToken: res.data.accessToken,
-					user: res.data.user
+					user: res.data.user,
+					success: true//res.data.success
 				}
 			} else {
 				return false

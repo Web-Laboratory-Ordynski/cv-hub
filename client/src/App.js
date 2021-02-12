@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -22,6 +22,15 @@ function App() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
+  const [userCv, setUserCv] = useState({})
+
+  useEffect(async () => {
+    const res = await API.getNewToken()
+    console.log(res)
+    if(res.success) {
+      setUserCv(res.user)
+    }
+  }, [])
 
   const register = async () => {
     const user = {
@@ -65,6 +74,8 @@ function App() {
 
   const getFormLocalStorage = name => JSON.parse(localStorage.getItem(name))
 
+  console.log(userCv)
+
   return (
     <Router>
       <div className="App">
@@ -93,7 +104,11 @@ function App() {
             register={() => register()}
           />
         </Route>
-        <Route path='/user/profile' component={Profile} exact />
+        <Route path='/user/profile' exact>
+          <Profile 
+            userCv={userCv}
+          />
+        </Route>
         <Route path='/user/profile/edit' component={EditProfile} exact />
         <Route path='/resume/create' component={CreateResume} exact />
         <Route path='/resume/resumes' component={AllResumes} exact />

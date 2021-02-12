@@ -6,7 +6,7 @@ import { Cv } from './Cv'
 
 const ref = React.createRef();
 
-export const Profile = () => {
+export const Profile = ({cv}) => {
   const func = () => {
     const cv = <Cv ref={ref} />
     console.log(cv)
@@ -29,7 +29,7 @@ export const Profile = () => {
               <div>
                 <span className="contacts-link-type">C:</span>
                 <a className="contacts-link" href="tel: +38 095 113 85 98">
-                  +38 093 952 85 98
+                  {cv.user}
             </a>
               </div>
               <div>
