@@ -11,6 +11,18 @@
   letter-spacing: 1.5px;
 }
 
+@media (min-width: 280px) {
+  .phoneAndMail p {
+    font-size: 20pt;
+  }
+}
+
+@media (min-width: 992px) {
+  .phoneAndMail p {
+    font-size: 25pt;
+  }
+}
+
 .phoneAndMail .mail {
   text-decoration: underline;
 }

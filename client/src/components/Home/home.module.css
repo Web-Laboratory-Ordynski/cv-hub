@@ -19,6 +19,70 @@
   background-color: rgba(0, 0, 0, 0.575);
 }
 
+@media (min-width: 280px) {
+  .header__conteiner {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: column nowrap;
+            flex-flow: column nowrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    padding: 50px 0px 0px 0px;
+    margin: 100px auto 100px auto;
+    width: 90%;
+  }
+}
+
+@media (min-width: 992px) {
+  .header__conteiner {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    padding: 50px 0px 0px 0px;
+    margin: 100px auto 100px auto;
+    width: 90%;
+  }
+}
+
+.header__conteiner h1 {
+  color: #ee5c55;
+}
+
+@media (min-width: 280px) {
+  .header__conteiner h1 {
+    font-size: 30pt;
+  }
+}
+
+@media (min-width: 992px) {
+  .header__conteiner h1 {
+    font-size: 40pt;
+  }
+}
+
+.header__conteiner p {
+  font-size: 12pt;
+}
+
+@media (min-width: 280px) {
+  .header__conteiner p {
+    padding-bottom: 50px;
+    width: 85%;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 992px) {
+  .header__conteiner p {
+    padding-bottom: 0px;
+  }
+}
+
 .header__button {
   /* padding: 0px 100px 0px 0px; */
   display: -webkit-box;
@@ -36,7 +100,18 @@
 
 .header__button h1 {
   color: #ee5c55;
-  font-size: 40pt;
+}
+
+@media (min-width: 280px) {
+  .header__button h1 {
+    font-size: 20pt;
+  }
+}
+
+@media (min-width: 992px) {
+  .header__button h1 {
+    font-size: 40pt;
+  }
 }
 
 .header__button p {
@@ -44,8 +119,6 @@
 }
 
 button {
-  margin: 100px 0px 0px 0px;
-  padding: 20px 50px;
   border-radius: 7px;
   color: #fff;
   border: 5px solid #4051b5;
@@ -54,6 +127,20 @@ button {
   cursor: pointer;
   font-size: 15pt;
   outline: none;
+}
+
+@media (min-width: 280px) {
+  button {
+    padding: 20px 30px;
+    margin: 50px 20px 50px 20px;
+  }
+}
+
+@media (min-width: 992px) {
+  button {
+    padding: 20px 50px;
+    margin: 100px 0px 50px 0px;
+  }
 }
 
 button:hover {
@@ -89,6 +176,29 @@ button:hover {
   margin: 30px auto 30px auto;
 }
 
+@media (min-width: 280px) {
+  .advice__blocks div {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: column nowrap;
+            flex-flow: column nowrap;
+    width: 90%;
+    margin: 30px auto 30px auto;
+    padding: 10px;
+  }
+}
+
+@media (min-width: 992px) {
+  .advice__blocks div {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+    width: 60%;
+    margin: 30px auto 30px auto;
+  }
+}
+
 .advice__blocks div:hover {
   -webkit-transition: all .5s ease-in-out;
   transition: all .5s ease-in-out;
@@ -101,8 +211,47 @@ button:hover {
   background-color: #5c6abb;
 }
 
-.advice__blocks div .galochka {
-  padding-left: 50px;
+.advice__blocks div .galochka__hdr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.advice__blocks div .galochka__hdr h2 {
+  font-size: 20pt;
+  color: #fff;
+  padding-top: 50px;
+}
+
+.advice__blocks div p {
+  color: #fff;
+}
+
+@media (min-width: 280px) {
+  .advice__blocks div p {
+    padding: 20px;
+    font-size: 15pt;
+  }
+}
+
+@media (min-width: 992px) {
+  .advice__blocks div p {
+    padding: 50px 0px 50px 0px;
+    font-size: 13pt;
+  }
+}
+
+@media (min-width: 992px) {
+  .advice__blocks div .galochka {
+    padding-left: 50px;
+  }
 }
 
 .advice__blocks div .hdr__descrpt {
@@ -125,18 +274,13 @@ button:hover {
   color: #ffd2d0;
 }
 
-.advice__blocks div .hdr__descrpt p {
-  font-size: 13pt;
-}
-
 .last__block {
-  height: 500px;
   width: 100%;
 }
 
 .last__block button {
   color: #000;
-  margin-top: 13%;
+  margin: 13%;
 }
 
 .last__block button:hover {

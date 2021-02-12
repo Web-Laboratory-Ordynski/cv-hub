@@ -11,6 +11,42 @@
     width: 90%;
     /* margin: 0 auto; */
     background-color: rgba(0, 0, 0, 0.575);
+    @media (min-width:280px) {
+        flex-flow: column nowrap;
+        justify-content: center;
+        padding: 50px 0px 0px 0px;
+        margin: 100px auto 100px auto;
+        width: 90%;
+    }
+    @media (min-width:992px) {
+        flex-flow: row nowrap;
+        justify-content: center;
+        padding: 50px 0px 0px 0px;
+        margin: 100px auto 100px auto;
+        width: 90%;
+    }
+
+    h1 {
+        color: #ee5c55;
+        @media (min-width:280px) {
+            font-size: 30pt;
+        }
+        @media (min-width:992px) {
+            font-size: 40pt;
+        }
+    }
+
+    p {
+        font-size: 12pt;
+        @media (min-width:280px) {
+            padding-bottom: 50px;
+            width: 85%;
+            margin: 0 auto;
+        }
+        @media (min-width:992px) {
+            padding-bottom: 0px;
+        }
+    }
 }
 
 .header__button {
@@ -19,10 +55,14 @@
     flex-flow: column nowrap;
     align-items: center;
     margin: 0 auto;
-    
     h1 {
         color: #ee5c55;
-        font-size: 40pt;
+        @media (min-width:280px) {
+            font-size: 20pt;
+        }
+        @media (min-width:992px) {
+            font-size: 40pt;
+        }
     }
 
     p {
@@ -31,8 +71,6 @@
 }
 
 button {
-    margin: 100px 0px 0px 0px;
-    padding: 20px 50px;
     border-radius: 7px;
     color: #fff;
     border: 5px solid #4051b5;
@@ -41,6 +79,15 @@ button {
     cursor: pointer;
     font-size: 15pt;
     outline: none;
+
+    @media (min-width:280px) {
+        padding: 20px 30px;
+        margin: 50px 20px 50px 20px;
+    }
+    @media (min-width:992px) {
+        padding: 20px 50px;
+        margin: 100px 0px 50px 0px;
+    }
 
     &:hover {
         color: #ffffff;
@@ -62,6 +109,18 @@ button {
         flex-flow: row nowrap;
         width: 60%;
         margin: 30px auto 30px auto;
+
+        @media (min-width:280px) {
+            flex-flow: column nowrap;
+            width: 90%;
+            margin: 30px auto 30px auto;
+            padding: 10px;
+        }
+        @media (min-width:992px) {
+            flex-flow: row nowrap;
+            width: 60%;
+            margin: 30px auto 30px auto;
+        }
         &:hover {
             transition: all .5s ease-in-out;
             background-color: #5c6abb;
@@ -71,8 +130,33 @@ button {
             }
         }
 
+        .galochka__hdr {
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+            h2 {
+                font-size: 20pt;
+                color: #fff;
+                padding-top: 50px;
+            }
+        }
+
+        p {
+            color: #fff;
+            @media (min-width:280px) {
+                padding: 20px;
+                font-size: 15pt;
+            }
+            @media (min-width:992px) {
+                padding: 50px 0px 50px 0px;
+                font-size: 13pt;
+            }
+        }
+
         .galochka {
-            padding-left: 50px;
+            @media (min-width:992px) {
+                padding-left: 50px;
+            }
         }
 
         .hdr__descrpt {
@@ -85,20 +169,16 @@ button {
                 font-size: 20pt;
                 color: #ffd2d0;
             }
-            p {
-                font-size: 13pt;
-            }
         }
     }
 }
 
 .last__block {
-    height: 500px;
     width: 100%;
 
     button {
         color: #000;
-        margin-top: 13%;
+        margin: 13%;
         &:hover {
             color: #fff;
             transition: all .5s ease-in-out;

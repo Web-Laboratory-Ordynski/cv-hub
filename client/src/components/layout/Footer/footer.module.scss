@@ -11,6 +11,12 @@
         color: #000;
         font-size: 25pt;
         letter-spacing: 1.5px;
+        @media (min-width:280px) {
+            font-size: 20pt;
+        }
+        @media (min-width:992px) {
+            font-size: 25pt;
+        }
     }
     .mail {
         text-decoration: underline;
