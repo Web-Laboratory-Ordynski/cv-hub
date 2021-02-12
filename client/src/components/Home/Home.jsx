@@ -37,7 +37,9 @@ export const Home = () => {
                             Створіть своє професійне резюме тут
                         </h1>
                         <Human />
-                        <button>Створити своє резюме</button>
+                        <NavLink to='/resume/create'>
+                            <button>Створити своє резюме</button>
+                        </NavLink>
                         <p>У Вас буде на 65% більше шансів отримати роботу</p>
                     </div>
                 </Parallax>
@@ -110,7 +112,9 @@ export const Home = () => {
             
 
             <Parallax className={s.last__block} bgImage={img2} strength={700}>
-                <button>Створити своє резюме</button>
+                <NavLink to='/resume/create'>
+                    <button>Створити своє резюме</button>
+                </NavLink>
             </Parallax>
         </div>
     )
