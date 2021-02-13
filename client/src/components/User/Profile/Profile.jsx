@@ -10,6 +10,8 @@ import ProfileEducation from "./profile-education";
 import ProfileUserInfoCard from "./profile-userinfo";
 import Pdf from "react-to-pdf"
 
+import API from '../../../api/api'
+
 const ref = React.createRef();
 
 const Profile = ({ getCV }) => {
@@ -24,11 +26,19 @@ const Profile = ({ getCV }) => {
     return <>loading...</>
   }
 
+  const download = async (cv) => {
+    const res = await API.downloadPdf(cv)
+    let file = new File(res, 'file.pdf')
+    console.log(file)
+    return file
+  }
+
   return (
     <>
       <Pdf targetRef={ref} filename="code-example.pdf">
         {({ toPdf }) => <button onClick={toPdf}>Generate Pdf</button>}
       </Pdf>
+      <button onClick={() => download(cv)}>Download PDF</button>
       <div ref={ref} className="wrapper">
         <div className="sidebar">
           <img className="my-foto" src={userImg} alt="my foto" />

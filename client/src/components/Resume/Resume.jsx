@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import CreateCV from './create-cv/create-cv'
+import API from '../../api/api'
 
 import './CreateResume.scss'
 
@@ -16,6 +17,8 @@ const CreateResume = ({updateCV}) => {
     updateCV(cv)
     console.log(cv)
   }
+
+
 
   // const updateCV = (key, value) => {
 

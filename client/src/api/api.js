@@ -73,6 +73,14 @@ const API = {
 				success: false
 			}
 		}
+	},
+	downloadPdf: (cv) => {
+		return axios.post(baseUrl + '/pdf-gen', cv)
+			.then(res => {
+				return res
+			}).catch(err => {
+				return err
+			})
 	}
 
 }
