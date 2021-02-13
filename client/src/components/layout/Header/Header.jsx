@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -32,7 +32,10 @@ export const Header = ({ isLogined }) => {
         window.location.href = '/home'
     }
 
-    const check = JSON.parse(localStorage.getItem('response')) !== null ? JSON.parse(localStorage.getItem('response')).success: false
+    // useEffect(() => {
+
+    // },)
+    // const check = JSON.parse(localStorage.getItem('response')) !== null ? JSON.parse(localStorage.getItem('response')).success: false
 
     return (
         <div className={classes.root}>
@@ -51,7 +54,7 @@ export const Header = ({ isLogined }) => {
                     <Button color="inherit"><Link className={classes.link} to='/resume/create'>Create Resume</Link></Button>
                     <Button color="inherit"><Link className={classes.link} to='/resume/resumes'>Resumes</Link></Button>
                     {
-                        check ? 
+                        isLogined ? 
                         <Button color="inherit"><Link className={classes.link} onClick={() => logOut()}>Log Out</Link></Button>
                         :
                         <Button color="inherit"><Link className={classes.link} to='/login'>Login</Link></Button>

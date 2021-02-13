@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -21,6 +21,7 @@ function App() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
+  const [user, setUser] = useState(null)
 
   const register = async () => {
     const user = {
@@ -93,10 +94,15 @@ function App() {
     return item
   }
 
+  useEffect(() => {
+    const res = getFormLocalStorage('response')
+    setUser(res)
+  }, [])
+
   return (
     <Router>
       <div className="App">
-        <Header />
+        <Header isLogined={user ? true : false} />
         <Route path='/about' exact>
           <About />
         </Route>
