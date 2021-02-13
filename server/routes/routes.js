@@ -8,8 +8,6 @@ router.post('/register', userContoller.register)
 
 router.post('/get-new-token', userContoller.getNewTokenByRefreshToken)
 
-router.get('/secured-data', userContoller.authenticateToken, (req, res) => res.send('Secured data'))
-
 router.put('/edit-cv', userContoller.authenticateToken, userContoller.editCV)
 
 module.exports = router

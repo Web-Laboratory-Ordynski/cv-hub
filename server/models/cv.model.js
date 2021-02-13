@@ -1,6 +1,12 @@
 const mongoose = require('mongoose')
 
 const cvModelUserInfo = mongoose.Schema({
+  name: {
+    type: String
+  },
+  surname: {
+    type: String
+  },
   adress: {
     type: String
   },
@@ -25,7 +31,7 @@ const cvModelUserInfo = mongoose.Schema({
   ]
 })
 
-const cvModelTechnologies = mongoose.Schema({
+const cvModelTechnologiesGroups = mongoose.Schema({
   groupName: {
     type: String
   },
@@ -54,7 +60,14 @@ const cvModelProjects = mongoose.Schema({
   position: {
     type: String
   },
-  technologies: [
+  siteUrl: {
+    type: String
+  },
+  // for example github repository url
+  codeUrl: { 
+    type: String
+  },
+  technologiesGroups: [
     mongoose.Schema({
       groupName: {
         type: String
@@ -66,7 +79,7 @@ const cvModelProjects = mongoose.Schema({
   ]
 })
 
-const cvModelExprerience = mongoose.Schema({
+const cvModelExperience = mongoose.Schema({
   name: {
     type: String
   },
@@ -112,8 +125,8 @@ const cvModel = mongoose.Schema({
   },
   projects: [cvModelProjects],
   userInfo: cvModelUserInfo,
-  technologies: [cvModelTechnologies],
-  exprerience: [cvModelExprerience],
+  technologiesGroups: [cvModelTechnologiesGroups],
+  experience: [cvModelExperience],
   education: [cvModelEducation],
 })
 

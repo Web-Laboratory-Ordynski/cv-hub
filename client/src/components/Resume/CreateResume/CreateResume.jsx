@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const Footer = () => {
+export const CreateResume = () => {
     return (
         <div>
-            Footer
+            Create Resume
         </div>
     )
 }

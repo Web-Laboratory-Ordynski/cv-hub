@@ -1,0 +1,33 @@
+.phoneAndMail h4 {
+  color: #000;
+  font-size: 14pt;
+  padding-top: 15px;
+}
+
+.phoneAndMail p {
+  padding-top: 40px;
+  color: #000;
+  font-size: 25pt;
+  letter-spacing: 1.5px;
+}
+
+@media (min-width: 280px) {
+  .phoneAndMail p {
+    font-size: 20pt;
+  }
+}
+
+@media (min-width: 992px) {
+  .phoneAndMail p {
+    font-size: 25pt;
+  }
+}
+
+.phoneAndMail .mail {
+  text-decoration: underline;
+}
+
+.contacts {
+  padding: 100px 0px 100px 0px;
+}
+/*# sourceMappingURL=footer.module.css.map */

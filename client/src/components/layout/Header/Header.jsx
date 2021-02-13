@@ -23,8 +23,16 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export const Header = () => {
-    const classes = useStyles();
+export const Header = ({ isLogined }) => {
+    const classes = useStyles()
+
+
+    const logOut = () => {
+        localStorage.clear()
+        window.location.href = '/home'
+    }
+
+    const check = JSON.parse(localStorage.getItem('response')) !== null ? JSON.parse(localStorage.getItem('response')).success: false
 
     return (
         <div className={classes.root}>
@@ -42,8 +50,12 @@ export const Header = () => {
                     <Button color="inherit"><Link className={classes.link} to='/user/profile/edit'>Edit profile</Link></Button>
                     <Button color="inherit"><Link className={classes.link} to='/resume/create'>Create Resume</Link></Button>
                     <Button color="inherit"><Link className={classes.link} to='/resume/resumes'>Resumes</Link></Button>
-                    <Button color="inherit"><Link className={classes.link} to='/login'>Login</Link></Button>
-                    <Button color="inherit"><Link className={classes.link} to='/signup'>Sign Up</Link></Button>
+                    {
+                        check ? 
+                        <Button color="inherit"><Link className={classes.link} onClick={() => logOut()}>Log Out</Link></Button>
+                        :
+                        <Button color="inherit"><Link className={classes.link} to='/login'>Login</Link></Button>
+                    }
                 </Toolbar>
             </AppBar>
         </div>
