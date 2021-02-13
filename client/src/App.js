@@ -64,12 +64,17 @@ function App() {
     const response = getFormLocalStorage('response')
 
     if (!response.accessToken) {
-      return addToLocalStorage('cv', JSON.stringify(cv))
+      const response = {
+        user: {
+          cv
+        }
+      }
+      return addToLocalStorage('response', JSON.stringify(response))
     } 
 
     const res = await API.editCv(cv, response.accessToken)
     if (res.success) {
-      response.cv = cv
+      response.user.cv = cv
       addToLocalStorage('response', JSON.stringify(response))
     }
   }
@@ -84,8 +89,8 @@ function App() {
   const addToLocalStorage = (name, value) => localStorage.setItem(name, JSON.stringify(value))
 
   const getFormLocalStorage = name => {
-    const item = localStorage.getItem(name)
-    return JSON.parse(item)
+    const item = JSON.parse(localStorage.getItem(name))
+    return item
   }
 
   return (

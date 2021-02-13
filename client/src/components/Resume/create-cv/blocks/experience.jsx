@@ -3,10 +3,11 @@ import { TextInput } from '../Inputs'
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
 import { Button, InputLabel, Select } from '@material-ui/core'
+import { currentExperienceIntialState } from '../../common'
 
 const Experience = ({cv, setCV}) => {
   const [experiences, setExperiences] = useState([])
-  const [currentExperience, setCurrentExperience] = useState({})
+  const [currentExperience, setCurrentExperience] = useState(currentExperienceIntialState)
 
   const updateExperience = (value, key) => {
     setCurrentExperience({ ...currentExperience, [key]: value })
@@ -14,12 +15,12 @@ const Experience = ({cv, setCV}) => {
 
   const addExperienceItem = () => {
     setExperiences([...experiences, currentExperience])
-    setCurrentExperience({})
+    setCurrentExperience(currentExperienceIntialState)
   }
 
   const saveExperience = useCallback(() => {
     setCV(cvState => ({...cvState, experience: [...cvState.experience, ...experiences]}))
-    setCurrentExperience({})
+    setCurrentExperience(currentExperienceIntialState)
   }, [experiences, setCV])
 
   useEffect(() => {

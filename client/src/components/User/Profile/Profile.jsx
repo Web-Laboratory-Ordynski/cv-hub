@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
-import "./css/app.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import userImg from "./img/photo.jpg";
+import React, { useEffect, useState } from 'react'
+import './css/app.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import userImg from './img/photo.jpg'
 // import { CreateResume } from "../../Resume/CreateResume/CreateResume";
-import ProfileProjects from "./profile-projects";
-import ProfileTechnologies from "./profile-technologies";
-import ProfileExpreriences from "./profile-exprerience";
-import ProfileEducation from "./profile-education";
-import ProfileUserInfoCard from "./profile-userinfo";
-import Pdf from "react-to-pdf"
+import ProfileProjects from './profile-projects'
+import ProfileTechnologies from './profile-technologies'
+import ProfileExpreriences from './profile-exprerience'
+import ProfileEducation from './profile-education'
+import ProfileUserInfoCard from './profile-userinfo'
+import Pdf from 'react-to-pdf'
 
-const ref = React.createRef();
+const ref = React.createRef()
 
 const Profile = ({ getCV }) => {
-  const [cv, setCV] = useState(null) 
+  const [cv, setCV] = useState(null)
 
   useEffect(() => {
     const cv = getCV()
@@ -44,18 +44,27 @@ const Profile = ({ getCV }) => {
             <div>
               <span className="contacts-link-type">E:</span>
               <a className="contacts-link" href="mailto:chornyiav@gmail.com">
-                <FontAwesomeIcon icon={["far", "envelope"]} />
+                <FontAwesomeIcon icon={['far', 'envelope']} />
                 {cv?.userInfo?.email}
               </a>
             </div>
             <div>
-              <span className="contacts-link-type">
-                {cv?.userInfo?.social?.name}
-              </span>
-              <a className="contacts-link" href="mailto:chornyiav@gmail.com">
-                <FontAwesomeIcon icon={["fab", "github"]} />
-                {cv?.userInfo?.social?.url}
-              </a>
+              {cv?.userInfo?.social.map((social) => {
+                return (
+                  <>
+                    <span className="contacts-link-type">
+                      {social.name}
+                    </span>
+                    <a
+                      className="contacts-link"
+                      href="mailto:chornyiav@gmail.com"
+                    >
+                      <FontAwesomeIcon icon={['fab', 'github']} />
+                      {social.url}
+                    </a>
+                  </>
+                )
+              })}
             </div>
           </div>
 
@@ -70,10 +79,10 @@ const Profile = ({ getCV }) => {
         <div className="about-me-container">
           {/* --- about me main intro -- */}
           <div className="info-container">
-            <h2 className="profession">{cv.position}</h2>
             <h1 className="name">
               {cv?.userInfo?.name} {cv?.userInfo?.surname}
             </h1>
+            <h2 className="profession">{cv.position}</h2>
             <p className="description">{cv.jobDesc}</p>
           </div>
           {/* -- project container-- */}
@@ -81,19 +90,18 @@ const Profile = ({ getCV }) => {
 
           {/* --- Work Experience --- */}
           <div>
-            {cv.exprerience && (
-              <ProfileExpreriences exprerience={cv.exprerience} />
+            {cv.experience && (
+              <ProfileExpreriences exprerience={cv.experience} />
             )}
             {/* ---Education container --- */}
             <div>
-              {cv.exprerience && <ProfileEducation education={cv.education} />}
+              {cv.education && <ProfileEducation education={cv.education} />}
             </div>
           </div>
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-
-export default Profile;
+export default Profile

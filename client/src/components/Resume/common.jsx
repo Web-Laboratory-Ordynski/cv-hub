@@ -48,3 +48,10 @@ export const skillsInitialState = {
   technologies: [],
 }
 
+export const currentExperienceIntialState = {
+  areYouCurentlyWorking: true
+}
+
+export const currentEducationIntialState = {
+  areYouCurentlyWorking: true
+}

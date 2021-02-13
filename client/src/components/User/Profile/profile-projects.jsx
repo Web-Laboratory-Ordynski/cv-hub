@@ -53,7 +53,7 @@ const ProfileProjects = ({ projects }) => {
 const ProfileProjectsCard = ({ project }) => {
   return (
     <li className="projects-item">
-      <h1>{project.name}</h1>
+      <h2>{project.name}</h2>
       {project.siteUrl && (
         <>
           <a className="project-link" href={project.siteUrl}>
@@ -71,8 +71,8 @@ const ProfileProjectsCard = ({ project }) => {
 
       {project.technologiesGroups &&
         project.technologiesGroups.map((technologyGroup) => (
-          <div className="">
-            <h3>{technologyGroup.groupName}</h3>
+          <div className="project">
+            <h4>{technologyGroup.groupName}</h4>
             <div className="">
               {technologyGroup.technologies &&
                 technologyGroup.technologies.map((technology) => (

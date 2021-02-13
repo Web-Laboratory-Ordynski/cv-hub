@@ -3,10 +3,11 @@ import { TextInput } from '../Inputs'
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
 import { Button, InputLabel, Select } from '@material-ui/core'
+import { currentExperienceIntialState as currentEducationIntialState } from '../../common'
 
 const Education = ({cv, setCV}) => {
   const [educations, setEducations] = useState([])
-  const [currentEducation, setCurrentEducation] = useState({})
+  const [currentEducation, setCurrentEducation] = useState(currentEducationIntialState)
 
   const updateEducation = (value, key) => {
     setCurrentEducation({ ...currentEducation, [key]: value })
@@ -14,12 +15,12 @@ const Education = ({cv, setCV}) => {
 
   const addEducationItem = () => {
     setEducations([...educations, currentEducation])
-    setCurrentEducation({})
+    setCurrentEducation(currentEducationIntialState)
   }
 
   const saveEducation = useCallback(() => {
     setCV((cvState) => ({...cvState, education: [...cvState.education, ...educations]}))
-    setCurrentEducation({})
+    setCurrentEducation(currentEducationIntialState)
   }, [educations, setCV])
 
   useEffect(() => {
@@ -47,6 +48,7 @@ const Education = ({cv, setCV}) => {
       </InputLabel>
       <Select
         native
+        defaultValue={true}
         value={currentEducation.areYouCurentlyStudying}
         onChange={(e) =>
           updateEducation(e.target.value === 'true', 'areYouCurentlyStudying')

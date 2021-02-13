@@ -21,20 +21,20 @@ const Skills = ({ cv, setCV }) => {
       technologies: [...currentSkillGroup.technologies, currentSkill],
     })
 
-    setCurrentSkill('')
+    setCurrentSkill({})
   }
 
   const saveSkillGroupToSkillsGroup = () => {
-    setSkills({ ...skills, currentSkillGroup })
+    setSkills({ ...skills, ...currentSkillGroup })
     setCurrentSkillGroup(skillsInitialState)
-    setCurrentSkill('')
+    setCurrentSkill({})
   }
 
   const saveAllSkills = useCallback(() => {
     setCV((cvState) => ({ ...cvState, technologiesGroups: skills }))
     setSkills({})
     setCurrentSkillGroup(skillsInitialState)
-    setCurrentSkill('')
+    setCurrentSkill({})
   }, [setCV, skills])
 
   useEffect(() => {}, [])
@@ -76,7 +76,7 @@ const Skills = ({ cv, setCV }) => {
             defaultValue={1}
             value={currentSkill.level}
             onChange={(e) => 
-              setCurrentSkill({...currentSkill, level: e.target.value})
+              setCurrentSkill({...currentSkill, level: +e.target.value})
             }
             >
             {

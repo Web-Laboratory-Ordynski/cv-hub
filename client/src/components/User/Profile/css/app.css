@@ -4,18 +4,17 @@
   display: flex;
   width: 800px;
   margin: 0 auto;
-  height: 1150px;
+  /* height: 1150px; */
   background-color: white;
   box-shadow: 5px 9px 20px rgba(0, 0, 0, 0.15);
 }
 .sidebar {
   background: #1e2939;
-  width: 370px;
-  padding-top: 40px;
+  width: 270px;
   padding-bottom: 40px;
 }
 .my-foto {
-  width: 370px;
+  width: 270px;
 }
 .about-me-container {
   /* padding-left: 90px;
@@ -28,10 +27,22 @@
   max-width: 100%;
   overflow: hidden;
 }
+
+.about-me-container h1 {
+  margin: 0;
+
+}
+
 .contacts-container {
-  margin-top: 60px;
+  display: grid;
+  text-align: left;
+  padding: 10px;
+  /* margin-top: 60px;
   margin-left: 40px;
-  margin-right: 40px;
+  margin-right: 40px; */
+}
+.contacts-container h3{
+  margin: 0;
 }
 .contacts-title {
   font-size: 22px;
@@ -60,17 +71,32 @@
   font-weight: 700;
   line-height: 24px;
   margin-bottom: 20px;
-  color: #ffffff;
+  color: #000;
+}
+
+.tech-skills-title ul {
+  list-style: none;
 }
 
 .tech-skills-container {
+  padding-left: 10px;
   /* temporary */
-  display: none;
+  /* display: none; */
 
   /* margin-right: 40px;
   margin-left: 40px;
   margin-top: 55px; */
 }
+
+.tech-skills-container ul {
+  padding: 0;
+}
+
+.tech-skills-container ul li{
+  /* margin: 0; */
+  text-align: left;
+}
+
 .tech-skills-item {
   font-size: 14px;
   font-weight: 400;
@@ -79,7 +105,7 @@
   margin-left: 15px;
 }
 .tech-skills-text {
-  color: #ffffff;
+  color: #000;
 }
 .soft-skills-container {
   margin-right: 40px;
@@ -107,8 +133,9 @@
   font-size: 14px;
   font-weight: 700;
   line-height: 24px;
-  margin-bottom: 10px;
-  margin-top: 10px;
+  margin: 0;
+  /* margin-bottom: 10px; */
+  /* margin-top: 10px; */
 }
 .name {
   font-size: 45px;
@@ -124,10 +151,11 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
-  margin-top: 20px;
+  /* margin-top: 20px; */
+  margin: 0;
 }
 .info-container {
-  margin-bottom: 60px;
+  /* margin-bottom: 60px; */
 }
 .about-me-title {
   font-size: 22px;
@@ -158,8 +186,17 @@
   border-bottom: 1px solid black;
   margin-bottom: 2em;
 }
+
+.projects-item h2 {
+  margin: 5px 0 5px 0;
+}
+
+.projects-item .project h4 {
+  margin: 5px 0 5px 0;
+}
+
 .projects-container {
-  margin-bottom: 55px;
+  /* margin-bottom: 55px; */
 }
 
 .projects-container ul {
