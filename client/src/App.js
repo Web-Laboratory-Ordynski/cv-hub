@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -23,6 +23,7 @@ function App() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [userCv, setUserCv] = useState({})
+  const [isLogined, setIsLogined] = useState(false)  
 
   const getNewToken = async () => {
     if (getFromLS('response')) {
@@ -33,48 +34,52 @@ function App() {
     }
   }
 
-
   useEffect(() => {
     getNewToken()
   }, [])
 
-  const register = async () => {
-    const user = {
+  const register = async (func) => {
+    let user = {
       username,
       password
     }
-
     const res = await API.register(user)
-    console.log(res)
+    
     if (res.success) {
-      addToLocalStorage('response', res)
+      func('/login')
+      setUsername('')
+      setPassword('')
       setError('')
     } else {
-      setError(res.msg)
+      func('/signup')
+      setError(res)
+      setUsername('')
+      setPassword('')
     }
-
-    setPassword('')
-    setUsername('')
   }
 
-  const login = async () => {
-    const user = {
+  const login = async (func) => {
+    let user = {
       username,
       password
     }
 
-    console.log(user)
-    const res = await API.login(user)
-    console.log(res)
-    if (res.success) {
-      addToLocalStorage('response', res)
-      setError('')
-    } else {
-      setError(res.msg)
+    if (username.trim() !== '' && password.trim() !== '') {
+      const res = await API.login(user)
+      
+      if (res.success) {
+        setIsLogined(true)
+        addToLocalStorage('response', res)
+        func('/home')
+        setUsername('')
+        setPassword('')
+      } else {
+        func('/login')
+        setError('Invalid username or password!')
+        setUsername('')
+        setPassword('')
+      }
     }
-
-    setPassword('')
-    setUsername('')
   }
 
   const addToLocalStorage = (name, value) => localStorage.setItem(name, JSON.stringify(value))
@@ -86,7 +91,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Header />
+        <Header isLogined={isLogined} />
         <Route path='/about' exact>
           <About />
         </Route>
@@ -98,7 +103,7 @@ function App() {
             setUsername={username => setUsername(username)}
             setPassword={password => setPassword(password)}
             error={error}
-            login={() => login()}
+            login={login}
           />
         </Route>
         <Route path='/signup' exact>
@@ -108,7 +113,7 @@ function App() {
             setUsername={username => setUsername(username)}
             setPassword={password => setPassword(password)}
             error={error}
-            register={() => register()}
+            register={register}
           />
         </Route>
         <Route path='/user/profile' exact>

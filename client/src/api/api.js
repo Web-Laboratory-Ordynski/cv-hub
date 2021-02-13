@@ -2,12 +2,18 @@ import axios from 'axios'
 
 const baseUrl = 'http://localhost:5000/api'
 
-const getFromLs = (value) => JSON.parse(localStorage.getItem(value))
+const getFromLs = (value) => {
+	const lsData = localStorage.getItem(value)
+	if (lsData) {
+		return JSON.parse(lsData)
+	}
+	return
+}
 const setRefreshTokenToLs = value => localStorage.setItem('refreshToken', value)
 
 axios.interceptors.request.use(
 	config => {
-		const token = getFromLs('response').token
+		const token = getFromLs('response')?.token
 		console.log(token)
 		if (token) {
 			config.headers['Authorization'] = 'Bearer ' + token;
@@ -20,11 +26,12 @@ axios.interceptors.request.use(
 
 const API = {
   	register: async user => {
+		//   console.log(user)
 		return axios.post(baseUrl + '/register', user)
 			.then(res => {
 				return res.data
 			}).catch(err => {
-				return err.response.data.msg
+				return err?.response?.data?.msg
 			})
 	},
 	login: user => {
@@ -57,10 +64,14 @@ const API = {
 					success: true//res.data.success
 				}
 			} else {
-				return false
+				return {
+					success: false
+				}
 			}
 		} else {
-			return false
+			return {
+				success: false
+			}
 		}
 	}
 
