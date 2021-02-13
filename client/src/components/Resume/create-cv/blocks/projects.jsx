@@ -1,5 +1,5 @@
 import { Button } from '@material-ui/core'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { TextInput } from '../Inputs'
 import {
   projectInitialState,
@@ -38,7 +38,7 @@ const Projects = ({ setCV, cv }) => {
     setCurrentProject({
       ...currentProject,
       technologies: [
-        ...currentProject.technologies,
+        ...currentProject?.technologies,
         currentProjectTechnologyGroup,
       ],
     })
@@ -50,7 +50,7 @@ const Projects = ({ setCV, cv }) => {
     setCV({ ...cv, projects: [...cv.projects, currentProject] })
     setCurrentProjectTechnologyGroup({ ...projectTechnologyInitialState })
     setCurrentTechnologie('')
-    setCurrentProject({})
+    setCurrentProject(projectInitialState)
   }
 
   return (

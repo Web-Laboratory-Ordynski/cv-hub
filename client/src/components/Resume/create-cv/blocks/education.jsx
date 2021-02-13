@@ -18,7 +18,7 @@ const Education = ({cv, setCV}) => {
   }
 
   const saveEducation = useCallback(() => {
-    setCV((cvState) => ({...cvState, education: [...cvState.education, educations]}))
+    setCV((cvState) => ({...cvState, education: [...cvState.education, ...educations]}))
     setCurrentEducation({})
   }, [educations, setCV])
 

@@ -18,7 +18,7 @@ const Experience = ({cv, setCV}) => {
   }
 
   const saveExperience = useCallback(() => {
-    setCV(cvState => ({...cvState, experience: [...cvState.experience, experiences]}))
+    setCV(cvState => ({...cvState, experience: [...cvState.experience, ...experiences]}))
     setCurrentExperience({})
   }, [experiences, setCV])
 
