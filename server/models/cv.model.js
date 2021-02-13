@@ -67,7 +67,7 @@ const cvModelProjects = mongoose.Schema({
   codeUrl: { 
     type: String
   },
-  technologiesGroup: [
+  technologiesGroups: [
     mongoose.Schema({
       groupName: {
         type: String
@@ -79,7 +79,7 @@ const cvModelProjects = mongoose.Schema({
   ]
 })
 
-const cvModelExprerience = mongoose.Schema({
+const cvModelExperience = mongoose.Schema({
   name: {
     type: String
   },
@@ -126,7 +126,7 @@ const cvModel = mongoose.Schema({
   projects: [cvModelProjects],
   userInfo: cvModelUserInfo,
   technologiesGroups: [cvModelTechnologiesGroups],
-  exprerience: [cvModelExprerience],
+  experience: [cvModelExperience],
   education: [cvModelEducation],
 })
 
