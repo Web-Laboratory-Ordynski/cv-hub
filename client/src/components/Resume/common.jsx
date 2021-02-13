@@ -35,7 +35,7 @@ export const projectInitialState = {
   position: '',
   siteUrl: '',
   codeUrl: '',
-  technologies: [],
+  technologiesGroups: [],
 }
 
 export const projectTechnologyInitialState = {

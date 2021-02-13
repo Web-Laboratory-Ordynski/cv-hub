@@ -37,8 +37,8 @@ const Projects = ({ setCV, cv }) => {
   const saveTechnologyGroup = () => {
     setCurrentProject({
       ...currentProject,
-      technologies: [
-        ...currentProject?.technologies,
+      technologiesGroups: [
+        ...currentProject?.technologiesGroups,
         currentProjectTechnologyGroup,
       ],
     })

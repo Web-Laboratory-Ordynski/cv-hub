@@ -75,15 +75,18 @@ function App() {
   }
 
   const getCv = () => {
-    const response = JSON.parse(getFormLocalStorage('response'))
-    if (response.cv) {
-      return response.cv
+    const response = getFormLocalStorage('response')
+    if (response && response?.user?.cv) {
+      return response.user.cv
     }
   }
 
   const addToLocalStorage = (name, value) => localStorage.setItem(name, JSON.stringify(value))
 
-  const getFormLocalStorage = name => JSON.parse(localStorage.getItem(name))
+  const getFormLocalStorage = name => {
+    const item = localStorage.getItem(name)
+    return JSON.parse(item)
+  }
 
   return (
     <Router>

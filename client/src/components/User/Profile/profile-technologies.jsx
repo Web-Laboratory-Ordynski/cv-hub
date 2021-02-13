@@ -25,13 +25,8 @@ const ProfileTechnologiesCard = ({ technologies }) => {
       {technologies.technologies &&
         technologies.technologies.map((technologiesGroup) => (
           <div className="">
-            <h3>{technologiesGroup.name}</h3>
-            <span className="tech-skills-text">{technologiesGroup.level}</span>
-            {/* <div className="">
-              {technologiesGroup.technologies &&
-                technologiesGroup.technologies.map((technologyLevel) => (  
-                ))}
-            </div> */}
+            <h3>{technologiesGroup}</h3>
+            {/* <span className="tech-skills-text">{technologiesGroup.level}</span> */}
           </div>
         ))}
     </li>
