@@ -1,4 +1,20 @@
 const mongoose = require('mongoose')
+const typeObjID = mongoose.Schema.Types.ObjectId
+
+exports.cvModelEducation = mongoose.model('Education', new mongoose.Schema({
+  name: {
+    type: String
+  },
+  startedWork: {
+    type: String
+  },
+  areYouCurentlyStuding: {
+    type: Boolean
+  },
+  endWork: {
+    type: String
+  },
+}))
 
 const cvModelUserInfo = mongoose.Schema({
   name: {
@@ -47,7 +63,7 @@ const cvModelTechnologiesGroups = mongoose.Schema({
   ]
 })
 
-const cvModelProjects = mongoose.Schema({
+exports.cvModelProjects = mongoose.model('Project', mongoose.Schema({
   creator: {
     type: String
   }, 
@@ -77,7 +93,7 @@ const cvModelProjects = mongoose.Schema({
       },
     })
   ]
-})
+}))
 
 const cvModelExperience = mongoose.Schema({
   name: {
@@ -97,23 +113,7 @@ const cvModelExperience = mongoose.Schema({
   },
 })
 
-const cvModelEducation = mongoose.Schema({
-  name: {
-    type: String
-  },
-  startedWork: {
-    type: String
-  },
-  areYouCurentlyStuding: {
-    type: Boolean
-  },
-  endWork: {
-    type: String
-  },
-})
-
-
-const cvModel = mongoose.Schema({
+const cvModel = new mongoose.Schema({
   userId: {
     type: String
   },
@@ -123,11 +123,11 @@ const cvModel = mongoose.Schema({
   jobDesc: {
     type: String
   },
-  projects: [cvModelProjects],
+  projects: [{type: typeObjID, ref: 'Project' }],
   userInfo: cvModelUserInfo,
   technologiesGroups: [cvModelTechnologiesGroups],
   experience: [cvModelExperience],
-  education: [cvModelEducation],
+  education: [{type: typeObjID, ref: 'Education' }],
 })
 
-module.exports = mongoose.model('CV', cvModel)
+exports.cvModel = mongoose.model('CV', cvModel)

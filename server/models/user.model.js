@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
-const cvModel = require('./cv.model')
+const { cvModel } = require('./cv.model')
+// const cvModel = require('./cv.model')
 
 const userSchema = new mongoose.Schema({
   username: {

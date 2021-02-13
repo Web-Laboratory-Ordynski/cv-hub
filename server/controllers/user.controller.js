@@ -2,6 +2,39 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const userModel = require('../models/user.model')
 const refreshTokenModel = require('../models/refresh-token.model')
+const { cvModelEducation } = require('../models/cv.model')
+
+const getProjectsIDs = async (projects) => {
+  projects.reduce(async (ids, currentObj) => {
+    try {
+      const obj = new cvModelEducation({
+        ...currentObj
+      })
+
+      const res = await obj.save()
+
+      return [...ids, res]
+    } catch (err) {
+      throw new Error(err)
+    }
+  }, [])
+}
+
+const getEducationsIDs = async (educations) => {
+  educations.reduce(async (ids, currentObj) => {
+    try {
+      const obj = new cvModelEducation({
+        currentObj
+      })
+
+      const res = await obj.save()
+
+      return [...ids, res]
+    } catch (err) {
+      throw new Error(err)
+    }
+  }, [])
+}
 
 exports.register = async (req, res) => {
   const username = req.body.username
@@ -90,12 +123,23 @@ exports.logout = async (req, res) => {
 
 exports.editCV = async (req, res) => {
   const user = await userModel.findOne({_id: req.user._id})
+  const cv = req.body.cv
 
   if (user) {
-    user.cv = req.body.cv
+    
+    user.cv.position = cv.position
+    user.cv.jobDesc = cv.jobDesc
+    user.cv.userInfo = cv.userInfo
+
+    const projectsIds = await getProjectsIDs(cv.projects)
+    const educationsIds = await getEducationsIDs(cv.education)
+
     try {
+      console.log(projectsIds)
+      console.log(educationsIds)
+      user.education = educationsIds
       await user.save()
-      res.status(200).json({success: true, user: await userModel.findOne({_id: req.user._id})})
+      res.status(200).json({success: true, user: await userModel.findOne({_id: req.user._id}).populate('education')})
     } catch (err) {
       console.log(err)
       res.status(400).json({success: false})
