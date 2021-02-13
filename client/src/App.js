@@ -1,97 +1,73 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import './App.css';
 import {
   BrowserRouter as Router,
   Route,
-  Redirect,
 } from 'react-router-dom'
-import About from './components/About/About'
+import { About } from './components/About/About'
 import { Home } from './components/Home/Home'
 import { Login } from './components/Auth/Login/Login'
 import { SignUp } from './components/Auth/SignUp/SignUp'
 import { Header } from './components/layout/Header/Header'
 import { Footer } from './components/layout/Footer/Footer'
-import Profile from './components/User/Profile/Profile'
+import { Profile } from './components/User/Profile/Profile'
 import { EditProfile } from './components/User/EditProfile/EditProfile'
-import { CreateResume } from './components/Resume/CreateResume/CreateResume'
 import { AllResumes } from './components/Resume/Resumes/AllResumes'
 
 import API from './api/api'
+import CreateResume from './components/Resume/Resume';
 
 function App() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
-  const [userCv, setUserCv] = useState({})
-  const [isLogined, setIsLogined] = useState(false)  
 
-  const getNewToken = async () => {
-    if (getFromLS('response')) {
-      const res = await API.getNewToken()
-      if (res.success) {
-        setUserCv(res.user)
-      }
-    }
-  }
-
-  useEffect(() => {
-    getNewToken()
-  }, [])
-
-  const register = async (func) => {
-    let user = {
+  const register = async () => {
+    const user = {
       username,
       password
     }
+
     const res = await API.register(user)
-    
+    console.log(res)
     if (res.success) {
-      func('/login')
-      setUsername('')
-      setPassword('')
+      addToLocalStorage('response', res)
       setError('')
     } else {
-      func('/signup')
-      setError(res)
-      setUsername('')
-      setPassword('')
+      setError(res.msg)
     }
+
+    setPassword('')
+    setUsername('')
   }
 
-  const login = async (func) => {
-    let user = {
+  const login = async () => {
+    const user = {
       username,
       password
     }
 
-    if (username.trim() !== '' && password.trim() !== '') {
-      const res = await API.login(user)
-      
-      if (res.success) {
-        setIsLogined(true)
-        addToLocalStorage('response', res)
-        func('/home')
-        setUsername('')
-        setPassword('')
-      } else {
-        func('/login')
-        setError('Invalid username or password!')
-        setUsername('')
-        setPassword('')
-      }
+    const res = await API.login(user)
+    console.log(res)
+    if (res.success) {
+      addToLocalStorage('response', res)
+      setError('')
+    } else {
+      setError(res.msg)
     }
+    
+    setPassword('')
+    setUsername('')
   }
 
   const addToLocalStorage = (name, value) => localStorage.setItem(name, JSON.stringify(value))
 
-  const getFromLS = value => JSON.parse(localStorage.getItem(value))
-
-  // console.log(userCv)
+  const getFormLocalStorage = name => JSON.parse(localStorage.getItem(name))
 
   return (
     <Router>
       <div className="App">
-        <Header isLogined={isLogined} />
+        <Header />
         <Route path='/about' exact>
           <About />
         </Route>
@@ -103,7 +79,7 @@ function App() {
             setUsername={username => setUsername(username)}
             setPassword={password => setPassword(password)}
             error={error}
-            login={login}
+            login={() => login()}
           />
         </Route>
         <Route path='/signup' exact>
@@ -113,19 +89,10 @@ function App() {
             setUsername={username => setUsername(username)}
             setPassword={password => setPassword(password)}
             error={error}
-            register={register}
+            register={() => register()}
           />
         </Route>
-        <Route path='/user/profile' exact>
-          {
-            userCv.cv && (
-              <Profile
-                cv={userCv.cv}
-              />
-            )
-          }
-
-        </Route>
+        <Route path='/user/profile' component={Profile} exact />
         <Route path='/user/profile/edit' component={EditProfile} exact />
         <Route path='/resume/create' component={CreateResume} exact />
         <Route path='/resume/resumes' component={AllResumes} exact />
