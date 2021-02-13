@@ -4,7 +4,6 @@ import s from './home.module.css'
 import { Parallax } from 'react-parallax';
 import img from './img/1.jpg'
 import img2 from './img/2.jpg'
-// import {CreateResume} from '../Resume/CreateResume/CreateResume'
 import { NavLink } from "react-router-dom";
 import {
     BrowserView,
@@ -15,7 +14,6 @@ import {
 export const Home = () => {
     return (
         <div className={s.home__page}>
-
             <BrowserView>
                 <Parallax bgImage={img} strength={700}>
                     <div className={s.header__conteiner}>
