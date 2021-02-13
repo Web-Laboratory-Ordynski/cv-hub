@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./css/app.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import userImg from "./img/photo.jpg";
@@ -12,8 +12,17 @@ import Pdf from "react-to-pdf"
 
 const ref = React.createRef();
 
-const Profile = ({ cv }) => {
+const Profile = ({ getCV }) => {
+  const [cv, setCV] = useState(null) 
 
+  useEffect(() => {
+    const cv = getCV()
+    setCV(cv)
+  }, [getCV])
+
+  if (!cv) {
+    return <>loading...</>
+  }
 
   return (
     <>
@@ -29,32 +38,32 @@ const Profile = ({ cv }) => {
             <div>
               <span className="contacts-link-type">P:</span>
               <a className="contacts-link" href="tel: +38 095 113 85 98">
-                {cv.userInfo.phone}
+                {cv?.userInfo?.phone}
               </a>
             </div>
             <div>
               <span className="contacts-link-type">E:</span>
               <a className="contacts-link" href="mailto:chornyiav@gmail.com">
                 <FontAwesomeIcon icon={["far", "envelope"]} />
-                {cv.userInfo.email}
+                {cv?.userInfo?.email}
               </a>
             </div>
             <div>
               <span className="contacts-link-type">
-                {cv.userInfo.social.name}
+                {cv?.userInfo?.social?.name}
               </span>
               <a className="contacts-link" href="mailto:chornyiav@gmail.com">
                 <FontAwesomeIcon icon={["fab", "github"]} />
-                {cv.userInfo.social.url}
+                {cv?.userInfo?.social?.url}
               </a>
             </div>
           </div>
 
-          {cv.technologies && <ProfileUserInfoCard userinfo={cv.userinfo} />}
+          {cv.userinfo && <ProfileUserInfoCard userinfo={cv.userinfo} />}
         </div>
         {/* --- Tech Skills container --- */}
-        {cv.technologies && (
-          <ProfileTechnologies technologies={cv.technologies} />
+        {cv.technologiesGroups && (
+          <ProfileTechnologies technologies={cv.technologiesGroups} />
         )}
 
         {/* -- about me container-- */}
@@ -63,7 +72,7 @@ const Profile = ({ cv }) => {
           <div className="info-container">
             <h2 className="profession">{cv.position}</h2>
             <h1 className="name">
-              {cv.userInfo.firstName} {cv.userInfo.lastName}
+              {cv?.userInfo?.firstName} {cv?.userInfo?.lastName}
             </h1>
             <p className="description">{cv.jobDesc}</p>
           </div>

@@ -59,6 +59,27 @@ function App() {
     setPassword('')
     setUsername('')
   }
+  
+  const updateCV = async (cv) => {
+    const response = getFormLocalStorage('response')
+
+    if (!response.accessToken) {
+      return addToLocalStorage('cv', JSON.stringify(cv))
+    } 
+
+    const res = await API.editCv(cv, response.accessToken)
+    if (res.success) {
+      response.cv = cv
+      addToLocalStorage('response', JSON.stringify(response))
+    }
+  }
+
+  const getCv = () => {
+    const response = JSON.parse(getFormLocalStorage('response'))
+    if (response.cv) {
+      return response.cv
+    }
+  }
 
   const addToLocalStorage = (name, value) => localStorage.setItem(name, JSON.stringify(value))
 
@@ -92,9 +113,13 @@ function App() {
             register={() => register()}
           />
         </Route>
-        <Route path='/user/profile' component={Profile} exact />
+        <Route path='/user/profile' component={Profile} exact>
+          <Profile getCV={getCv} />
+        </Route>
         <Route path='/user/profile/edit' component={EditProfile} exact />
-        <Route path='/resume/create' component={CreateResume} exact />
+        <Route path='/resume/create' exact>
+          <CreateResume updateCV={(cv) => updateCV(cv)} />
+        </Route>
         <Route path='/resume/resumes' component={AllResumes} exact />
         <Footer />
       </div>

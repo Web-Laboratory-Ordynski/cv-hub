@@ -3,7 +3,7 @@ import CreateCV from './create-cv/create-cv'
 
 import './CreateResume.scss'
 
-const CreateResume = () => {
+const CreateResume = ({updateCV}) => {
   const [cv, setCV] = useState({
     userInfo: {},
     projects: [],
@@ -13,6 +13,7 @@ const CreateResume = () => {
   
   const saveCV = (e) => {
     e.preventDefault()
+    updateCV(cv)
     console.log(cv)
   }
 

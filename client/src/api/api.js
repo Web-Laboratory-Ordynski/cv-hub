@@ -43,7 +43,7 @@ const API = {
 			})
 	},
 	editCv: (cv, token) => {
-		return axios.put(baseUrl + '/edit-cv', cv, { headers: {  'Authorization': 'Bearer ' + token } })
+		return axios.put(baseUrl + '/edit-cv', { cv }, { headers: {  'Authorization': 'Bearer ' + token } })
 			.then(res => {
 				return res.data
 			}).catch(err => {
