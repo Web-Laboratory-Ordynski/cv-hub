@@ -23,7 +23,7 @@ function App() {
   const [error, setError] = useState('')
   const [user, setUser] = useState(null)
 
-  const register = async () => {
+  const register = async (func) => {
     const user = {
       username,
       password
@@ -31,36 +31,47 @@ function App() {
 
     const res = await API.register(user)
     console.log(res)
+
     if (res.success) {
       addToLocalStorage('response', res)
+      func('/login')
+      setUsername('')
+      setPassword('')
       setError('')
     } else {
       setError(res.msg)
+      func('/signup')
+      setError(res)
+      setUsername('')
+      setPassword('')
     }
-
-    setPassword('')
-    setUsername('')
   }
 
-  const login = async () => {
-    const user = {
+  const login = async (func) => {
+    let user = {
       username,
       password
     }
 
-    const res = await API.login(user)
-    console.log(res)
-    if (res.success) {
-      addToLocalStorage('response', res)
-      setError('')
-    } else {
-      setError(res.msg)
+
+    console.log(user)
+    if (username.trim() !== '' && password.trim() !== '') {
+      const res = await API.login(user)
+      console.log(res)
+
+      if (res.success) {
+        addToLocalStorage('response', res)
+        setError('')
+        func('/home')
+      } else {
+        func('/login')
+        setError(res.msg)
+        setUsername('')
+        setPassword('')
+      }
     }
-    
-    setPassword('')
-    setUsername('')
   }
-  
+
   const updateCV = async (cv) => {
     const response = getFormLocalStorage('response')
 
@@ -114,7 +125,7 @@ function App() {
             setUsername={username => setUsername(username)}
             setPassword={password => setPassword(password)}
             error={error}
-            login={() => login()}
+            login={login}
           />
         </Route>
         <Route path='/signup' exact>
@@ -124,7 +135,7 @@ function App() {
             setUsername={username => setUsername(username)}
             setPassword={password => setPassword(password)}
             error={error}
-            register={() => register()}
+            register={register}
           />
         </Route>
         <Route path='/user/profile' component={Profile} exact>

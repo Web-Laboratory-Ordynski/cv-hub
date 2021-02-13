@@ -59,6 +59,7 @@ exports.login = async (req, res) => {
     const refreshToken = await generateRefreshToken({...user._doc, cv: null}, date)
     
     const userToSend = { ...user._doc }
+    console.log(userToSend)
     delete userToSend.password
 
     return res.status(200).json({success: true, accessToken, refreshToken, user: { ...userToSend }})
