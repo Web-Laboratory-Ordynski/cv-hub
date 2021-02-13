@@ -3,7 +3,6 @@ import './App.css';
 import {
   BrowserRouter as Router,
   Route,
-  Redirect,
 } from 'react-router-dom'
 import { About } from './components/About/About'
 import { Home } from './components/Home/Home'
@@ -13,10 +12,10 @@ import { Header } from './components/layout/Header/Header'
 import { Footer } from './components/layout/Footer/Footer'
 import { Profile } from './components/User/Profile/Profile'
 import { EditProfile } from './components/User/EditProfile/EditProfile'
-import { CreateResume } from './components/Resume/CreateResume/CreateResume'
 import { AllResumes } from './components/Resume/Resumes/AllResumes'
 
 import API from './api/api'
+import CreateResume from './components/Resume/Resume';
 
 function App() {
   const [username, setUsername] = useState('')
