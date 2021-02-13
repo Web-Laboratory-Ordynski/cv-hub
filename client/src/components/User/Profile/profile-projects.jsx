@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const ProfileProjects = ({ projects }) => {
   return (
@@ -47,26 +47,36 @@ const ProfileProjects = ({ projects }) => {
         </li> */}
       </ul>
     </div>
-  );
-};
+  )
+}
 
 const ProfileProjectsCard = ({ project }) => {
   return (
     <li className="projects-item">
-      {project.url && (
-        <a className="project-link" href={project.url}>
-          {project.url}
+      <h1>{project.name}</h1>
+      {project.siteUrl && (
+        <>
+          <a className="project-link" href={project.siteUrl}>
+            {project.siteUrl}
+          </a>
+          <br />
+        </>
+      )}
+
+      {project.codeUrl && (
+        <a className="project-link" href={project.codeUrl}>
+          {project.codeUrl}
         </a>
       )}
 
-      {project.technologies &&
-        project.technologies.map((technologyGroup) => (
+      {project.technologiesGroups &&
+        project.technologiesGroups.map((technologyGroup) => (
           <div className="">
             <h3>{technologyGroup.groupName}</h3>
             <div className="">
               {technologyGroup.technologies &&
                 technologyGroup.technologies.map((technology) => (
-                  <span className="tech-name">{technology}</span>
+                  <span className="tech-name">{technology} </span>
                 ))}
             </div>
           </div>
@@ -78,7 +88,7 @@ const ProfileProjectsCard = ({ project }) => {
         </b>
       </span> */}
     </li>
-  );
-};
+  )
+}
 
-export default ProfileProjects;
+export default ProfileProjects

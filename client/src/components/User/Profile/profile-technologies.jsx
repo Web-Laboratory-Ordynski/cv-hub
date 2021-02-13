@@ -18,6 +18,7 @@ const ProfileTechnologies = ({ technologies }) => {
 const ProfileTechnologiesCard = ({ technologies }) => {
   return (
     <li className="tech-skills-item">
+      3jrh9g78g43hr9hj3902
       {technologies.groupName && (
         <span className="tech-skills-text">{technologies.groupName}</span>
       )}
@@ -27,11 +28,6 @@ const ProfileTechnologiesCard = ({ technologies }) => {
           <div className="">
             <h3>{technologiesGroup.name}</h3>
             <span className="tech-skills-text">{technologiesGroup.level}</span>
-            {/* <div className="">
-              {technologiesGroup.technologies &&
-                technologiesGroup.technologies.map((technologyLevel) => (  
-                ))}
-            </div> */}
           </div>
         ))}
     </li>

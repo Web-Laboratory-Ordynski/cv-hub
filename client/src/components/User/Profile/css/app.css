@@ -18,10 +18,15 @@
   width: 370px;
 }
 .about-me-container {
-  padding-left: 90px;
+  /* padding-left: 90px;
   padding-right: 90px;
   padding-top: 110px;
-  padding-bottom: 110px;
+  padding-bottom: 110px;*/
+  padding-left: 20px; 
+  text-align: left;
+  float: left;
+  max-width: 100%;
+  overflow: hidden;
 }
 .contacts-container {
   margin-top: 60px;
@@ -59,9 +64,12 @@
 }
 
 .tech-skills-container {
-  margin-right: 40px;
+  /* temporary */
+  display: none;
+
+  /* margin-right: 40px;
   margin-left: 40px;
-  margin-top: 55px;
+  margin-top: 55px; */
 }
 .tech-skills-item {
   font-size: 14px;
@@ -146,10 +154,18 @@
 .projects-item {
   font-weight: 700;
   margin-left: 17px;
+  list-style: none;
+  border-bottom: 1px solid black;
+  margin-bottom: 2em;
 }
 .projects-container {
   margin-bottom: 55px;
 }
+
+.projects-container ul {
+  padding: 0;
+}
+
 .about-me-profession {
   font-size: 16px;
   font-weight: 700;
