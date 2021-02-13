@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { TextInput } from '../Inputs'
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
 import { Button, InputLabel, Select } from '@material-ui/core'
 
-const Experience = (props) => {
-  const [expreiences, setExperiences] = useState([])
+const Experience = ({cv, setCV}) => {
+  const [experiences, setExperiences] = useState([])
   const [currentExperience, setCurrentExperience] = useState({})
 
   const updateExperience = (value, key) => {
@@ -13,9 +13,18 @@ const Experience = (props) => {
   }
 
   const addExperienceItem = () => {
-    setExperiences([...expreiences, currentExperience])
+    setExperiences([...experiences, currentExperience])
     setCurrentExperience({})
   }
+
+  const saveExperience = useCallback(() => {
+    setCV(cvState => ({...cvState, experience: [...cvState.experience, experiences]}))
+    setCurrentExperience({})
+  }, [experiences, setCV])
+
+  useEffect(() => {
+    saveExperience()
+  }, [experiences, saveExperience])
 
   return (
     <div className="cv-block">

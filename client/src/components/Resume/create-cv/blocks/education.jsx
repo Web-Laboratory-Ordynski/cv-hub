@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { TextInput } from '../Inputs'
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
 import { Button, InputLabel, Select } from '@material-ui/core'
 
-const Education = (props) => {
+const Education = ({cv, setCV}) => {
   const [educations, setEducations] = useState([])
   const [currentEducation, setCurrentEducation] = useState({})
 
@@ -16,6 +16,15 @@ const Education = (props) => {
     setEducations([...educations, currentEducation])
     setCurrentEducation({})
   }
+
+  const saveEducation = useCallback(() => {
+    setCV((cvState) => ({...cvState, education: [...cvState.education, educations]}))
+    setCurrentEducation({})
+  }, [educations, setCV])
+
+  useEffect(() => {
+    saveEducation()
+  }, [saveEducation])
 
   return (
     <div className="cv-block">

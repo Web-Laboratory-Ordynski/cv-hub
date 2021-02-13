@@ -1,5 +1,5 @@
 import { Button } from '@material-ui/core'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { TextInput } from '../Inputs'
 import {
   projectInitialState,
@@ -46,20 +46,12 @@ const Projects = ({ setCV, cv }) => {
     setCurrentTechnologie('')
   }
 
-  const saveCurrentProject = useCallback(
-    (e) => {
-      setCV({ ...cv, projects: [...cv.projects, currentProject] })
-      setCurrentProjectTechnologyGroup({ ...projectTechnologyInitialState })
-      setCurrentTechnologie('')
-    },
-    [currentProject, cv, setCV]
-  )
-
-  // useEffect(() => {
-  //   setCV({ ...cv, projects: [...cv.projects, currentProject] })
-  //   setCurrentProjectTechnologyGroup({...projectTechnologyInitialState})
-  //   setCurrentTechnologie('')
-  // }, [currentProject, cv, saveCurrentProject, setCV])
+  const saveCurrentProject = (e) => {
+    setCV({ ...cv, projects: [...cv.projects, currentProject] })
+    setCurrentProjectTechnologyGroup({ ...projectTechnologyInitialState })
+    setCurrentTechnologie('')
+    setCurrentProject({})
+  }
 
   return (
     <div className="cv-block">
@@ -138,6 +130,16 @@ const Projects = ({ setCV, cv }) => {
           color="primary"
         >
           Save group
+        </Button>
+
+        <Button
+          onClick={saveCurrentProject}
+          className="create-group"
+          type="button"
+          variant="contained"
+          color="primary"
+        >
+          Save project
         </Button>
       </div>
     </div>

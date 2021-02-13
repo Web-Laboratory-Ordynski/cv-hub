@@ -1,5 +1,5 @@
 import { Button } from '@material-ui/core'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { skillsInitialState } from '../../common'
 import { TextInput } from '../Inputs'
 
@@ -7,10 +7,6 @@ const Skills = ({ cv, setCV }) => {
   const [skills, setSkills] = useState({})
   const [currentSkillGroup, setCurrentSkillGroup] = useState(skillsInitialState)
   const [currentSkill, setCurrentSkill] = useState('')
-
-  const saveSkills = useCallback(() => {
-    setCV({ ...cv, technologiesGroups: skills })
-  }, [cv, setCV, skills])
 
   const updateCurrentSkillGroup = () => {
     if (!currentSkill) {
@@ -31,6 +27,17 @@ const Skills = ({ cv, setCV }) => {
     setCurrentSkillGroup(skillsInitialState)
     setCurrentSkill('')
   }
+  
+  const saveAllSkills = useCallback(() => {
+    setCV((cvState) => ({ ...cvState, technologiesGroups: skills }))
+    setSkills({})
+    setCurrentSkillGroup(skillsInitialState)
+    setCurrentSkill('')
+  }, [setCV, skills])
+
+  useEffect(() => {
+
+  }, [])
 
   return (
     <div className="cv-block">
@@ -81,6 +88,16 @@ const Skills = ({ cv, setCV }) => {
             color="primary"
           >
             Save skills group
+          </Button>
+
+          <Button
+            onClick={saveAllSkills}
+            className="create-group"
+            type="button"
+            variant="contained"
+            color="primary"
+          >
+            Save all skills
           </Button>
       </div>
     </div>

@@ -7,12 +7,7 @@ import Skills from './blocks/skills'
 import Experience from './blocks/experience'
 import Education from './blocks/education'
 
-const CreateCV = ({ cv, setCV }) => {
-  const saveCV = (e) => {
-    e.preventDefault()
-    console.log(cv)
-  }
-
+const CreateCV = ({ cv, setCV, saveCV }) => {
   return (
     <div className="create-resume-wrapper">
       <div className="create-resume">
