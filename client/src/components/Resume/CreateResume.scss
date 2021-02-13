@@ -39,6 +39,11 @@
               justify-self: center;
               // max-width: auto;
             }
+            .enter-skill {
+              display: grid;
+              align-items: end;
+              grid-auto-flow: column;
+            }
           }
           .create-group {
             grid-column: 1/3;

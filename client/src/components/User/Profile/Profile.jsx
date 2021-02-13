@@ -72,7 +72,7 @@ const Profile = ({ getCV }) => {
           <div className="info-container">
             <h2 className="profession">{cv.position}</h2>
             <h1 className="name">
-              {cv?.userInfo?.firstName} {cv?.userInfo?.lastName}
+              {cv?.userInfo?.name} {cv?.userInfo?.surname}
             </h1>
             <p className="description">{cv.jobDesc}</p>
           </div>

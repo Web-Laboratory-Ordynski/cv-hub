@@ -1,12 +1,14 @@
-import { Button } from '@material-ui/core'
+import { Button, Select } from '@material-ui/core'
 import React, { useCallback, useEffect, useState } from 'react'
 import { skillsInitialState } from '../../common'
 import { TextInput } from '../Inputs'
 
+const skillLevels = [1,2,3,4,5,6,7,8,9,10]
+
 const Skills = ({ cv, setCV }) => {
   const [skills, setSkills] = useState({})
   const [currentSkillGroup, setCurrentSkillGroup] = useState(skillsInitialState)
-  const [currentSkill, setCurrentSkill] = useState('')
+  const [currentSkill, setCurrentSkill] = useState({})
 
   const updateCurrentSkillGroup = () => {
     if (!currentSkill) {
@@ -27,7 +29,7 @@ const Skills = ({ cv, setCV }) => {
     setCurrentSkillGroup(skillsInitialState)
     setCurrentSkill('')
   }
-  
+
   const saveAllSkills = useCallback(() => {
     setCV((cvState) => ({ ...cvState, technologiesGroups: skills }))
     setSkills({})
@@ -35,9 +37,7 @@ const Skills = ({ cv, setCV }) => {
     setCurrentSkill('')
   }, [setCV, skills])
 
-  useEffect(() => {
-
-  }, [])
+  useEffect(() => {}, [])
 
   return (
     <div className="cv-block">
@@ -59,16 +59,33 @@ const Skills = ({ cv, setCV }) => {
           {currentSkillGroup.technologies.map((skill) => {
             return (
               <div className="technology">
-                <span>{skill}</span>
+                <span>{skill.name}</span>
+                <span>{skill.level}/10</span>
               </div>
             )
           })}
 
-          <TextInput
-            label="Skill"
-            value={currentSkill}
-            onChange={(value) => setCurrentSkill(value)}
-          />
+          <div className='enter-skill' >
+            <TextInput
+              label="Skill"
+              value={currentSkill.name}
+              onChange={(value) => setCurrentSkill({...currentSkill, name: value})}
+            />
+            <Select
+            native
+            defaultValue={1}
+            value={currentSkill.level}
+            onChange={(e) => 
+              setCurrentSkill({...currentSkill, level: e.target.value})
+            }
+            >
+            {
+              skillLevels.map(skillLevel => {
+                return <option value={skillLevel}>{skillLevel}</option>
+              })
+            }
+            </Select>
+          </div>
 
           <Button
             size="small"
@@ -80,25 +97,25 @@ const Skills = ({ cv, setCV }) => {
             +
           </Button>
         </div>
-          <Button
-            onClick={saveSkillGroupToSkillsGroup}
-            className="create-group"
-            type="button"
-            variant="contained"
-            color="primary"
-          >
-            Save skills group
-          </Button>
+        <Button
+          onClick={saveSkillGroupToSkillsGroup}
+          className="create-group"
+          type="button"
+          variant="contained"
+          color="primary"
+        >
+          Save skills group
+        </Button>
 
-          <Button
-            onClick={saveAllSkills}
-            className="create-group"
-            type="button"
-            variant="contained"
-            color="primary"
-          >
-            Save all skills
-          </Button>
+        <Button
+          onClick={saveAllSkills}
+          className="create-group"
+          type="button"
+          variant="contained"
+          color="primary"
+        >
+          Save all skills
+        </Button>
       </div>
     </div>
   )
