@@ -56,7 +56,7 @@ const ProfileProjectsCard = ({ project }) => {
       <h2>{project.name}</h2>
       {project.siteUrl && (
         <>
-          <a className="project-link" href={project.siteUrl}>
+          <a className="project-link" rel="noreferrer" target='_blank' href={project.siteUrl}>
             {project.siteUrl}
           </a>
           <br />
@@ -64,7 +64,7 @@ const ProfileProjectsCard = ({ project }) => {
       )}
 
       {project.codeUrl && (
-        <a className="project-link" href={project.codeUrl}>
+        <a className="project-link" rel="noreferrer" target='_blank' href={project.codeUrl}>
           {project.codeUrl}
         </a>
       )}

@@ -65,11 +65,6 @@ const Profile = ({ cv }) => {
 
           {cv.userinfo && <ProfileUserInfoCard userinfo={cv.userinfo} />}
         </div>
-        {/* --- Tech Skills container --- */}
-        {cv.technologiesGroups.length > 0 && (
-          <ProfileTechnologies technologies={cv.technologiesGroups} />
-        )}
-
         {/* -- about me container-- */}
         <div className="about-me-container">
           {/* --- about me main intro -- */}
@@ -80,6 +75,10 @@ const Profile = ({ cv }) => {
             <h2 className="profession">{cv.position}</h2>
             <p className="description">{cv.jobDesc}</p>
           </div>
+            {/* --- Tech Skills container --- */}
+        {cv.technologiesGroups.length > 0 && (
+          <ProfileTechnologies technologies={cv.technologiesGroups} />
+        )}
           {/* -- project container-- */}
           {cv.projects.length > 0 && <ProfileProjects projects={cv.projects} />}
 

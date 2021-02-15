@@ -1,8 +1,35 @@
+@media screen and (max-width: 768px) {
+  .wrapper {
+    width: 95vw;
+    height: calc(95vw * 1.4142857);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .wrapper {
+    width: 70vw;
+    height: calc(70vw * 1.4142857);
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .wrapper {
+    width: 80vw;
+    height: calc(80vw * 1.4142857);
+  }
+}
+/* 
+@media screen and (min-width: 1300px) {
+  .wrapper {
+    width: 80vw;
+    height: calc(80vw * 1.4142857);
+  }
+} */
 
 .wrapper {
   background: #ffffff;
   display: flex;
-  width: 800px;
+
   margin: 0 auto;
   /* height: 1150px; */
   background-color: white;
@@ -10,17 +37,15 @@
 }
 .sidebar {
   background: #1e2939;
-  width: 270px;
+  /* width: 270px; */
+  width: auto;
   padding-bottom: 40px;
 }
 .my-foto {
   width: 270px;
 }
 .about-me-container {
-  /* padding-left: 90px;
-  padding-right: 90px;
-  padding-top: 110px;
-  padding-bottom: 110px;*/
+  background-color: white;
   padding-left: 20px; 
   text-align: left;
   float: left;
@@ -79,13 +104,8 @@
 }
 
 .tech-skills-container {
+  background-color: white;
   padding-left: 10px;
-  /* temporary */
-  /* display: none; */
-
-  /* margin-right: 40px;
-  margin-left: 40px;
-  margin-top: 55px; */
 }
 
 .tech-skills-container ul {
@@ -93,7 +113,6 @@
 }
 
 .tech-skills-container ul li{
-  /* margin: 0; */
   text-align: left;
 }
 
@@ -134,8 +153,6 @@
   font-weight: 700;
   line-height: 24px;
   margin: 0;
-  /* margin-bottom: 10px; */
-  /* margin-top: 10px; */
 }
 .name {
   font-size: 45px;
