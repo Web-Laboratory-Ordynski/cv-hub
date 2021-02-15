@@ -15,7 +15,7 @@ export const Home = () => {
     return (
         <div className={s.home__page}>
             <BrowserView>
-                <Parallax bgImage={img} strength={700}>
+                <Parallax bgImage={img} strength={1000}>
                     <div className={s.header__conteiner}>
                         <Human />
                         <div className={s.header__button}>

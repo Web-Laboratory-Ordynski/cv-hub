@@ -96,7 +96,9 @@ exports.editCV = async (req, res) => {
     user.cv = req.body.cv
     try {
       await user.save()
-      res.status(200).json({success: true, user: await userModel.findOne({_id: req.user._id})})
+      const newUser = await userModel.findOne({_id: req.user._id})
+      delete newUser.password
+      res.status(200).json({success: true, user: newUser})
     } catch (err) {
       console.log(err)
       res.status(400).json({success: false})

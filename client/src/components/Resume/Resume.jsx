@@ -15,14 +15,7 @@ const CreateResume = ({updateCV}) => {
   const saveCV = (e) => {
     e.preventDefault()
     updateCV(cv)
-    console.log(cv)
   }
-
-
-
-  // const updateCV = (key, value) => {
-
-  // }
 
   return (
     <CreateCV 

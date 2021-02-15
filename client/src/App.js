@@ -3,6 +3,7 @@ import './App.css';
 import {
   BrowserRouter as Router,
   Route,
+  useHistory,
 } from 'react-router-dom'
 import About from './components/About/About'
 import { Home } from './components/Home/Home'
@@ -22,6 +23,7 @@ function App() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [user, setUser] = useState(null)
+	const history = useHistory()
 
   const register = async (func) => {
     const user = {
@@ -53,13 +55,12 @@ function App() {
       password
     }
 
-
-    console.log(user)
     if (username.trim() !== '' && password.trim() !== '') {
       const res = await API.login(user)
       console.log(res)
 
       if (res.success) {
+        setUser(res.user)
         addToLocalStorage('response', res)
         setError('')
         func('/home')
@@ -84,17 +85,11 @@ function App() {
       return addToLocalStorage('response', JSON.stringify(response))
     } 
 
-    const res = await API.editCv(cv, response.accessToken)
+    const res = await API.editCv(cv)
     if (res.success) {
-      response.user.cv = cv
-      addToLocalStorage('response', JSON.stringify(response))
-    }
-  }
-
-  const getCv = () => {
-    const response = getFormLocalStorage('response')
-    if (response && response?.user?.cv) {
-      return response.user.cv
+      response.user = res.user
+      addToLocalStorage('response', response)
+      setUser(res.user)
     }
   }
 
@@ -107,7 +102,21 @@ function App() {
 
   useEffect(() => {
     const res = getFormLocalStorage('response')
-    setUser(res)
+    if (
+      !res?.refreshToken
+      ) {
+        const isLoginPage = window.location.pathname === '/login'
+        if  ( !isLoginPage ||
+        window.location.pathname === '/signup') {
+          window.location.href = '/login'
+
+        }
+    } else {
+      (async () => {
+        const res = await API.getNewToken()
+        setUser(res.user)
+      })()
+    }
   }, [])
 
   return (
@@ -139,14 +148,14 @@ function App() {
           />
         </Route>
         <Route path='/user/profile' component={Profile} exact>
-          <Profile getCV={getCv} />
+          <Profile cv={user?.cv} />
         </Route>
         <Route path='/user/profile/edit' component={EditProfile} exact />
         <Route path='/resume/create' exact>
           <CreateResume updateCV={(cv) => updateCV(cv)} />
         </Route>
         <Route path='/resume/resumes' component={AllResumes} exact />
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </Router>
   );

@@ -50,9 +50,9 @@ export const Header = ({ isLogined }) => {
                     <Button color="inherit"><Link className={classes.link} to='/about'>About</Link></Button>
                     <Button color="inherit"><Link className={classes.link} to='/home'>Home</Link></Button>
                     <Button color="inherit"><Link className={classes.link} to='/user/profile'>Profile</Link></Button>
-                    <Button color="inherit"><Link className={classes.link} to='/user/profile/edit'>Edit profile</Link></Button>
+                    {/* <Button color="inherit"><Link className={classes.link} to='/user/profile/edit'>Edit profile</Link></Button> */}
                     <Button color="inherit"><Link className={classes.link} to='/resume/create'>Create Resume</Link></Button>
-                    <Button color="inherit"><Link className={classes.link} to='/resume/resumes'>Resumes</Link></Button>
+                    {/* <Button color="inherit"><Link className={classes.link} to='/resume/resumes'>Resumes</Link></Button> */}
                     {
                         isLogined ? 
                         <Button color="inherit"><Link className={classes.link} onClick={() => logOut()}>Log Out</Link></Button>

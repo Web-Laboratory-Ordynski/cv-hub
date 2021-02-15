@@ -10,27 +10,12 @@ import ProfileEducation from './profile-education'
 import ProfileUserInfoCard from './profile-userinfo'
 import Pdf from 'react-to-pdf'
 
-// import API from '../../../api/api'
-
 const ref = React.createRef();
 
-const Profile = ({ getCV }) => {
-  const [cv, setCV] = useState(null)
-
-  useEffect(() => {
-    const cv = getCV()
-    setCV(cv)
-  }, [getCV])
+const Profile = ({ cv }) => {
 
   if (!cv) {
     return <>loading...</>
-  }
-
-  const download = async (cv) => {
-    // const res = await API.downloadPdf(cv)
-    // let file = new File(res, 'file.pdf')
-    // console.log(file)
-    // return file
   }
 
   return (
@@ -38,7 +23,7 @@ const Profile = ({ getCV }) => {
       <Pdf targetRef={ref} filename="code-example.pdf">
         {({ toPdf }) => <button onClick={toPdf}>Generate Pdf</button>}
       </Pdf>
-      <button onClick={() => download(cv)}>Download PDF</button>
+      {/* <button onClick={() => download(cv)}>Download PDF</button> */}
       <div ref={ref} className="wrapper">
         <div className="sidebar">
           <img className="my-foto" src={userImg} alt="my foto" />
@@ -81,7 +66,7 @@ const Profile = ({ getCV }) => {
           {cv.userinfo && <ProfileUserInfoCard userinfo={cv.userinfo} />}
         </div>
         {/* --- Tech Skills container --- */}
-        {cv.technologiesGroups && (
+        {cv.technologiesGroups.length > 0 && (
           <ProfileTechnologies technologies={cv.technologiesGroups} />
         )}
 
@@ -96,16 +81,16 @@ const Profile = ({ getCV }) => {
             <p className="description">{cv.jobDesc}</p>
           </div>
           {/* -- project container-- */}
-          {cv.projects && <ProfileProjects projects={cv.projects} />}
+          {cv.projects.length > 0 && <ProfileProjects projects={cv.projects} />}
 
           {/* --- Work Experience --- */}
           <div>
-            {cv.experience && (
+            {cv.experience.length > 0 && (
               <ProfileExpreriences exprerience={cv.experience} />
             )}
             {/* ---Education container --- */}
             <div>
-              {cv.education && <ProfileEducation education={cv.education} />}
+              {cv.education.length > 0 && <ProfileEducation education={cv.education} />}
             </div>
           </div>
         </div>

@@ -13,7 +13,7 @@ const setRefreshTokenToLs = value => localStorage.setItem('refreshToken', value)
 
 axios.interceptors.request.use(
 	config => {
-		const token = getFromLs('response')?.token
+		const token = getFromLs('response')?.accessToken
 		console.log(token)
 		if (token) {
 			config.headers['Authorization'] = 'Bearer ' + token;
@@ -39,11 +39,11 @@ const API = {
 			.then(res => {
 				return res.data
 			}).catch(err => {
-				return err.response.data
+				return err?.response?.data
 			})
 	},
-	editCv: (cv, token) => {
-		return axios.put(baseUrl + '/edit-cv', { cv }, { headers: {  'Authorization': 'Bearer ' + token } })
+	editCv: (cv) => {
+		return axios.put(baseUrl + '/edit-cv', { cv } )
 			.then(res => {
 				return res.data
 			}).catch(err => {
