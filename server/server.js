@@ -1,4 +1,5 @@
-require('dotenv').config()
+const { resolve } = require('path')
+require('dotenv').config({path: resolve(__dirname,"../.env")})
 const PORT = process.env.PORT || 5000
 const express = require('express')
 const morgan = require('morgan')

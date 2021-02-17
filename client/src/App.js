@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './App.css';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Route,
   useHistory,
 } from 'react-router-dom'
@@ -36,13 +36,13 @@ function App() {
 
     if (res.success) {
       addToLocalStorage('response', res)
-      func('/login')
+      func('/#/login')
       setUsername('')
       setPassword('')
       setError('')
     } else {
       setError(res.msg)
-      func('/signup')
+      func('/#/signup')
       setError(res)
       setUsername('')
       setPassword('')
@@ -63,9 +63,9 @@ function App() {
         setUser(res.user)
         addToLocalStorage('response', res)
         setError('')
-        func('/home')
+        func('/#/home')
       } else {
-        func('/login')
+        func('/#/login')
         setError(res.msg)
         setUsername('')
         setPassword('')
@@ -82,7 +82,7 @@ function App() {
           cv
         }
       }
-      return addToLocalStorage('response', JSON.stringify(response))
+      return addToLocalStorage('response', response)
     } 
 
     const res = await API.editCv(cv)

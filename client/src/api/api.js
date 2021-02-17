@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:5000/api'
+// const baseUrl = 'http://localhost:5000/api'
+const baseUrl = 'https://cv-hub.herokuapp.com/api'
 
 const getFromLs = (value) => {
 	const lsData = localStorage.getItem(value)
